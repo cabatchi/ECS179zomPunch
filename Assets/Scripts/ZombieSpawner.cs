@@ -8,8 +8,7 @@ public class ZombieSpawner : MonoBehaviour
     public GameObject zombiePrefab;
     [SerializeField]
     public Transform spawnPoint;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         // Call the method to start spawning zombies
@@ -32,20 +31,4 @@ public class ZombieSpawner : MonoBehaviour
             }
         }
     }
-
-    // void Update()
-    // {
-    //     if (Input.GetButtonDown("Fire1"))
-    //     {
-    //         SpawnZombie();
-    //     }
-    // }
-
-    // void SpawnZombie()
-    // {
-    //     if (zombiePrefab != null)
-    //     {
-    //         Instantiate(zombiePrefab, transform.position, transform.rotation);
-    //     }
-    // }
 }
