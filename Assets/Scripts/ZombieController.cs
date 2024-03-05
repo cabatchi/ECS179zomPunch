@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class ZombieController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float speed = 3f;
+    private Transform target;
+
     void Start()
     {
-        
+        // Find the player's transform using the tag "Player"
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (target != null)
+        {
+            // Move the zombie towards the player
+            Vector2 direction = (target.position - transform.position).normalized;
+            transform.Translate(direction * speed * Time.deltaTime);
+        }
     }
 }
