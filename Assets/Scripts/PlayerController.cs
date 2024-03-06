@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float stunDuration = 1.0f;
     private bool isStunned = false;
 
-    enum PlayerStates { Normal, Rolling, Dead };
+    enum PlayerStates { Normal, Rolling, Stunned, Dead };
     private PlayerStates playerState;
     private float modifiedSpeed; // For later implemntation of powerups or slowdowns from enemies
     private Vector2 movementDirection;
@@ -76,12 +76,13 @@ public class PlayerController : MonoBehaviour
             rolling();
             return;
         }
-        //Gets Movement Directions based on inputs
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(playerState == PlayerStates.Stunned)
         {
-            handleRoll();
+            rolling();
+            return;
         }
-        if(Input.GetButton("Fire1"))
+        //Roll in direction of player input
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             handleRoll();
         }
@@ -91,25 +92,31 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!isStunned) 
+        if (collider.gameObject.tag == "Enemy") 
         {
-            health.TakeDamage(1);
-            StunPlayer();
-            Debug.Log("Damage Taken! Heahlth is " + health);
-        } else {
-            Debug.Log("Player is stunned");
+            Debug.Log("Player has collided with an enemy");
+            if (!isStunned) 
+            {
+                health.TakeDamage(1);
+                StunPlayer();
+                Debug.Log("Damage Taken! Health is " + health);
+            } else {
+                Debug.Log("Player is stunned");
+            }
         }
     }
 
     public void StunPlayer()
     {
         isStunned = true;
+        playerState = PlayerStates.Stunned;
         StartCoroutine(UnStunAfterDelay(stunDuration));
     }
 
     private IEnumerator UnStunAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        playerState = PlayerStates.Normal;
         isStunned = false;
     }
 }
