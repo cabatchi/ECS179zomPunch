@@ -11,11 +11,8 @@ public class ZombieSpawner : MonoBehaviour
     
     void Start()
     {
-        // Call the method to start spawning zombies
         StartCoroutine(SpawnZombie());
     }
-
-    // Coroutine to spawn zombies
     IEnumerator SpawnZombie()
     {
         while (true)
