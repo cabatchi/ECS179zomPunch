@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rollCoolDown = 2.0f;
     [SerializeField] private float rollDistance = 20.0f;
     [SerializeField] private Animator animator;
+    [SerializeField] private Health health;
+    [SerializeField] private float stunDuration = 1.0f;
+    private bool isStunned = false;
+
     enum PlayerStates { Normal, Rolling, Dead };
     private PlayerStates playerState;
     private float modifiedSpeed; // For later implemntation of powerups or slowdowns from enemies
@@ -49,6 +54,15 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position = newPosition;
     }
 
+    // public void KnockBack(Vector2 playerDirection, float knockBackForce) {
+    //     // Calculate the knockback direction as the opposite of the player's direction
+    //     Vector2 knockBackDirection = -playerDirection.normalized;
+
+    //     Vector2 newPosition = Vector2.Lerp(gameObject.transform.position, knockBackDirection * knockBackForce, 6.0f * Time.deltaTime);
+    //     gameObject.transform.position = newPosition;
+    // }
+
+
     void Update()
     {
         movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); //Get input from player
@@ -73,5 +87,29 @@ public class PlayerController : MonoBehaviour
         }
         gameObject.transform.Translate(movementDirection * Time.deltaTime * modifiedSpeed); //Basic movement
         animator.SetBool("Moving", movementDirection != Vector2.zero); //Enable or disable movement animation based on if there is input from player
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (!isStunned) 
+        {
+            health.TakeDamage(1);
+            StunPlayer();
+            Debug.Log("Damage Taken! Heahlth is " + health);
+        } else {
+            Debug.Log("Player is stunned");
+        }
+    }
+
+    public void StunPlayer()
+    {
+        isStunned = true;
+        StartCoroutine(UnStunAfterDelay(stunDuration));
+    }
+
+    private IEnumerator UnStunAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isStunned = false;
     }
 }
