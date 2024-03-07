@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    // [SerializeField] private Animator anim;
+    [SerializeField] private Animator anim;
 
     [SerializeField] private float meleeSpeed;
 
@@ -12,8 +12,16 @@ public class PlayerAttack : MonoBehaviour
 
     float timeUntilMelee;
 
-    public void update() 
+    void Update() 
     {
+        if (Input.GetKeyDown(KeyCode.K)) 
+        {
+        }
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Debug.Log("Pressed K ");
+            anim.SetTrigger("Attack");
+        }
     }
 }
