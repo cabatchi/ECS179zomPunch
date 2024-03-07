@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Health health;
     [SerializeField] private float stunDuration = 1.0f;
+    [SerializeField] private PlayerAttack weapon;
     private bool isStunned = false;
 
     enum PlayerStates { Normal, Rolling, Stunned, Dead };
@@ -53,14 +54,6 @@ public class PlayerController : MonoBehaviour
         Vector2 newPosition = Vector2.Lerp(gameObject.transform.position, rollingDestination, 6.0f * Time.deltaTime);
         gameObject.transform.position = newPosition;
     }
-
-    // public void KnockBack(Vector2 playerDirection, float knockBackForce) {
-    //     // Calculate the knockback direction as the opposite of the player's direction
-    //     Vector2 knockBackDirection = -playerDirection.normalized;
-
-    //     Vector2 newPosition = Vector2.Lerp(gameObject.transform.position, knockBackDirection * knockBackForce, 6.0f * Time.deltaTime);
-    //     gameObject.transform.position = newPosition;
-    // }
 
 
     void Update()

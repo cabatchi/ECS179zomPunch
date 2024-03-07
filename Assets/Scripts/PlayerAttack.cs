@@ -14,13 +14,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void update() 
     {
-private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Zombie") 
-        {
-            // other.GetComponent<Enemy>().TakeDamage(damage);
-            Debug.Log("Enemy hit");
-        }
-    }
+
     }
 }
