@@ -81,6 +81,18 @@ public class PlayerController : MonoBehaviour
         }
         gameObject.transform.Translate(movementDirection * Time.deltaTime * modifiedSpeed); //Basic movement
         animator.SetBool("Moving", movementDirection != Vector2.zero); //Enable or disable movement animation based on if there is input from player
+
+        if (Input.GetKeyDown(KeyCode.J)) 
+        {
+            useWeapon();
+        }
+    }
+    public void useWeapon() 
+    {
+        // if (weapon != null) 
+        // {
+        //     Instantiate(weapon);
+        // }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
