@@ -47,6 +47,11 @@ public class ZombieController : MonoBehaviour
             Debug.Log("Sword -> Zombie");
             TakeDamage(1);
         }
+        if (collider.gameObject.tag == "Bullet") 
+        {
+            Debug.Log("Bullet -> Zombie");
+            TakeDamage(1);
+        }
     }
 
 
