@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 3c96fa30eee908d48a12a89d2400cf3e
+  - enabled: 1
+    path: Assets/Scenes/ZomPunch.unity
+    guid: 7c7c1741a6d14774dbea90929806400f
   m_configObjects: {}
