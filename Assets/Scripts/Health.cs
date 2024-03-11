@@ -13,32 +13,18 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health > numOfHearts)
+        {
+            health = numOfHearts;
+        }
+
         for (int i = 0; i < hearts.Length; i++)
         {
-
-            // Reset Hearts if they are greater than max
-            if (health > numOfHearts) 
-            {
-                health = numOfHearts;
-            }
-
             // Render Hearts
-            if (i < health) 
-            {
-                hearts[i].sprite = fullHeart;
-            } else {
-                hearts[i].sprite = emptyHeart;
-            }
-            
+            hearts[i].sprite = i < health ? fullHeart : emptyHeart;
+
             // Display max hearts
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
+            hearts[i].enabled = i < numOfHearts;
         }
     }
 
