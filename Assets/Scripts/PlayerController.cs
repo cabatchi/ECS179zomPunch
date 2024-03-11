@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); //Get input from player
         rollCooldownTimer += Time.deltaTime;
         if (playerState == PlayerStates.Dead)
         {
@@ -85,18 +84,8 @@ public class PlayerController : MonoBehaviour
             rolling();
             return;
         }
-        //Roll in direction of player input
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     HandleRoll();
-        // }
         gameObject.transform.Translate(movementDirection * Time.deltaTime * modifiedSpeed); //Basic movement
         animator.SetBool("Moving", movementDirection != Vector2.zero); //Enable or disable movement animation based on if there is input from player
-
-        // if (Input.GetKeyDown(KeyCode.J))
-        // {
-        //     useWeapon();
-        // }
     }
     public void UseWeapon()
     {
