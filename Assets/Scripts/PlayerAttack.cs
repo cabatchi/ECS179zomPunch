@@ -14,36 +14,40 @@ public class PlayerAttack : MonoBehaviour
     private float despawnDelay = 3f;
     float timeUntilMelee;
 
-    void Start() 
+    void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    void Update() 
+    public void UpdateWeaponCrosshair(Vector3 mousePos)
     {
-
-        // Handle weapon rotation around player
-        mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        this.mousePos = mousePos;
         Vector3 rotation = mousePos - transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    }
 
-        // Shoot cooldown
-        if (!canFire) 
-        {
-            timer += Time.deltaTime;
-            if (timer > timeBetweenFiring) 
-            {
-                timer = 0;
-                canFire = true;
-            }
-        }
-        // Shoot
-        if (Input.GetMouseButtonDown(0) && canFire)
+    public void UseWeapon()
+    {
+        if (canFire)
         {
             canFire = false;
             GameObject bulletInstance = Instantiate(bullet, bulletTransform.position, Quaternion.identity);
             Destroy(bulletInstance, despawnDelay);
+        }
+    }
+
+    void Update()
+    {
+        // Shoot cooldown
+        if (!canFire)
+        {
+            timer += Time.deltaTime;
+            if (timer > timeBetweenFiring)
+            {
+                timer = 0;
+                canFire = true;
+            }
         }
     }
 }
