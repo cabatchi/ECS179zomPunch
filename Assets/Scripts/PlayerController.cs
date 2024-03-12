@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -28,25 +29,35 @@ public class PlayerController : MonoBehaviour
         rollCooldownTimer = rollCoolDown; //Player can roll at the start of the game, no need to wait
     }
 
-    public void handlePunch() {
+    public void HandleMove(Vector2 movementDirection)
+    {
+        this.movementDirection = movementDirection;
+    }
+
+    public void HandlePunch()
+    {
         Debug.Log("Punching");
     }
 
-    public void handleRoll() {
-        if(rollCooldownTimer >= rollCoolDown)
+    public void HandleRoll()
+    {
+        if (rollCooldownTimer >= rollCoolDown)
         {
             playerState = PlayerStates.Rolling;
             rollingDestination = gameObject.transform.position + (Vector3)movementDirection * rollDistance;
             rollCooldownTimer = 0.0f;
             Debug.Log("Begun Rolling");
             rolling();
-        } else {
+        }
+        else
+        {
             Debug.Log("Roll is on cooldown");
         }
 
     }
-    public void rolling(){
-        if(Vector2.Distance(rollingDestination,(Vector2)gameObject.transform.position) < 0.4)
+    public void rolling()
+    {
+        if (Vector2.Distance(rollingDestination, (Vector2)gameObject.transform.position) < 0.4)
         {
             playerState = PlayerStates.Normal;
             return;
@@ -58,36 +69,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); //Get input from player
         rollCooldownTimer += Time.deltaTime;
-        if(playerState == PlayerStates.Dead)
+        if (playerState == PlayerStates.Dead)
         {
             return;
         }
-        if(playerState == PlayerStates.Rolling)
+        if (playerState == PlayerStates.Rolling)
         {
             rolling();
             return;
         }
-        if(playerState == PlayerStates.Stunned)
+        if (playerState == PlayerStates.Stunned)
         {
             rolling();
             return;
-        }
-        //Roll in direction of player input
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            handleRoll();
         }
         gameObject.transform.Translate(movementDirection * Time.deltaTime * modifiedSpeed); //Basic movement
         animator.SetBool("Moving", movementDirection != Vector2.zero); //Enable or disable movement animation based on if there is input from player
-
-        if (Input.GetKeyDown(KeyCode.J)) 
-        {
-            useWeapon();
-        }
     }
-    public void useWeapon() 
+    public void UseWeapon()
     {
         // if (weapon != null) 
         // {
@@ -97,15 +97,17 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Enemy") 
+        if (collider.gameObject.tag == "Enemy")
         {
             Debug.Log("Player has collided with an enemy");
-            if (!isStunned) 
+            if (!isStunned)
             {
                 health.TakeDamage(1);
                 StunPlayer();
                 Debug.Log("Damage Taken! Health is " + health);
-            } else {
+            }
+            else
+            {
                 Debug.Log("Player is stunned");
             }
         }
