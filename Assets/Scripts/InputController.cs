@@ -9,26 +9,28 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        Vector2 movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        playerController.HandleMove(movementDirection);
-
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        playerAttack.UpdateWeaponCrosshair(mousePos);
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerController.HandleRoll();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (!PauseMenuController.isPaused)
         {
-            playerAttack.UseWeapon();
-        }
+            Vector2 movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            playerController.HandleMove(movementDirection);
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            pauseMenuController.ToggleMenu();
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            playerAttack.UpdateWeaponCrosshair(mousePos);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                playerAttack.UseWeapon();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                pauseMenuController.ToggleMenu();
+            }
         }
     }
 }
