@@ -5,6 +5,7 @@ public class InputController : MonoBehaviour
     [SerializeField]
     public PlayerController playerController;
     public PlayerAttack playerAttack;
+    public PauseMenuController pauseMenuController;
 
     void Update()
     {
@@ -23,6 +24,11 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             playerAttack.UseWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenuController.ToggleMenu();
         }
     }
 }
