@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Powerup : ScriptableObject
 {
+    public new string name;
+    public float cooldownTime;
+    public float activeTime;
 
-    private void Start()
-    {
-
-    }
-
-    private void Update()
+    public virtual void Activate() 
     {
 
     }
