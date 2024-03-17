@@ -6,18 +6,19 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed = 200.0f; //Speed player will start with at the beginning of the game
+    [SerializeField] public float baseSpeed = 200.0f; //Speed player will start with at the beginning of the game
     [SerializeField] private float rollCoolDown = 2.0f;
     [SerializeField] private float rollDistance = 20.0f;
     [SerializeField] private Animator animator;
     [SerializeField] private Health health;
+    [SerializeField] public float damage = 1;
     [SerializeField] private float stunDuration = 1.0f;
     [SerializeField] private PlayerAttack weapon;
     private bool isStunned = false;
 
     enum PlayerStates { Normal, Rolling, Stunned, Dead };
     private PlayerStates playerState;
-    private float modifiedSpeed; // For later implemntation of powerups or slowdowns from enemies
+    public float modifiedSpeed; // For later implemntation of powerups or slowdowns from enemies
     private Vector2 movementDirection;
     private float rollCooldownTimer;
     private Vector2 rollingDestination;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         modifiedSpeed = baseSpeed;
         playerState = PlayerStates.Normal;
         rollCooldownTimer = rollCoolDown; //Player can roll at the start of the game, no need to wait
+        damage = 1;
     }
 
     public void HandleMove(Vector2 movementDirection)
@@ -89,10 +91,7 @@ public class PlayerController : MonoBehaviour
     }
     public void UseWeapon()
     {
-        // if (weapon != null) 
-        // {
-        //     Instantiate(weapon);
-        // }
+        damage += 1;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
