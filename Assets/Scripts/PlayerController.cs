@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rollDistance = 20.0f;
     [SerializeField] private Animator animator;
     [SerializeField] private Health health;
+    [SerializeField] public float damage = 1;
     [SerializeField] private float stunDuration = 1.0f;
     [SerializeField] private PlayerAttack weapon;
     private bool isStunned = false;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         modifiedSpeed = baseSpeed;
         playerState = PlayerStates.Normal;
         rollCooldownTimer = rollCoolDown; //Player can roll at the start of the game, no need to wait
+        damage = 1;
     }
 
     public void HandleMove(Vector2 movementDirection)
@@ -89,10 +91,7 @@ public class PlayerController : MonoBehaviour
     }
     public void UseWeapon()
     {
-        // if (weapon != null) 
-        // {
-        //     Instantiate(weapon);
-        // }
+        damage += 1;
     }
 
     void OnTriggerEnter2D(Collider2D collider)

@@ -8,6 +8,7 @@ public class ZombieController : MonoBehaviour
     public float health = 1f;
     private Transform target;
     private Animator animator;
+    private 
     void Start()
     {
         // Find the player's transform using the tag "Player"
@@ -49,8 +50,11 @@ public class ZombieController : MonoBehaviour
         }
         if (collider.gameObject.tag == "Bullet") 
         {
-            Debug.Log("Bullet -> Zombie");
-            TakeDamage(1);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            float damage = playerController.damage;
+            Debug.Log("Bullet -> Zombie" + damage);
+            TakeDamage(damage);
         }
     }
 
