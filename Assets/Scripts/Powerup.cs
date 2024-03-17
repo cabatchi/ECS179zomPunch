@@ -1,13 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Powerup : ScriptableObject
+public class Powerup : MonoBehaviour
 {
-    public new string name;
-    public float cooldownTime;
-    public float activeTime;
+    public PowerupEffect powerupEffect;
 
-    public virtual void Activate() 
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
-
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Collided with powerup");
+            Destroy(gameObject);
+            powerupEffect.Apply(collision.gameObject);
+        }
     }
 }
