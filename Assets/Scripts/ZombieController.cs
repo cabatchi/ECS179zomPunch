@@ -69,6 +69,7 @@ public class ZombieController : MonoBehaviour
 
         if (health <= 0)
         {
+            Destroy(gameObject.GetComponent<BoxCollider2D>()); //Removes collision so that the zombie can't damage the player after it's dead
             OnDied();
         }
     }

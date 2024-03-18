@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         modifiedSpeed = baseSpeed;
         playerState = PlayerStates.Normal;
         rollCooldownTimer = rollCoolDown; //Player can roll at the start of the game, no need to wait
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         damage = 1;
     }
 
@@ -44,12 +44,12 @@ public class PlayerController : MonoBehaviour
 
     public void HandleRoll()
     {
-        if (rollCooldownTimer >= rollCoolDown)
+        if (rollCooldownTimer >= rollCoolDown && playerState == PlayerStates.Normal)
         {
+            Debug.Log("Begun Rolling");
             playerState = PlayerStates.Rolling;
             rollingDestination = gameObject.transform.position + (Vector3)movementDirection * rollDistance;
             rollCooldownTimer = 0.0f;
-            Debug.Log("Begun Rolling");
             animator.SetBool("Rolling", true);
             rolling();
         }
