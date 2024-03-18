@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
             rollingDestination = gameObject.transform.position + (Vector3)movementDirection * rollDistance;
             rollCooldownTimer = 0.0f;
             Debug.Log("Begun Rolling");
+            animator.SetBool("Rolling", true);
             rolling();
         }
         else
@@ -59,9 +60,10 @@ public class PlayerController : MonoBehaviour
     }
     public void rolling()
     {
-        if (Vector2.Distance(rollingDestination, (Vector2)gameObject.transform.position) < 0.4)
+        if (Vector2.Distance(rollingDestination, (Vector2)gameObject.transform.position) < 0.1)
         {
             playerState = PlayerStates.Normal;
+            animator.SetBool("Rolling", false);
             return;
         }
         Vector2 newPosition = Vector2.Lerp(gameObject.transform.position, rollingDestination, 6.0f * Time.deltaTime);
@@ -83,11 +85,22 @@ public class PlayerController : MonoBehaviour
         }
         if (playerState == PlayerStates.Stunned)
         {
-            rolling();
             return;
         }
+        setDirectionPlayer();
         gameObject.transform.Translate(movementDirection * Time.deltaTime * modifiedSpeed); //Basic movement
-        animator.SetBool("Moving", movementDirection != Vector2.zero); //Enable or disable movement animation based on if there is input from player
+        animator.SetFloat("Speed", movementDirection.magnitude); //Enable or disable movement animation based on if there is input from player
+    }
+
+    void setDirectionPlayer() {
+        if (movementDirection.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (movementDirection.x > 0) // If moving right, reset scale to original
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
     public void UseWeapon()
     {
