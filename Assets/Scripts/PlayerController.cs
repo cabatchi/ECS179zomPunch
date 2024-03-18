@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float damage = 1;
     [SerializeField] private float stunDuration = 1.0f;
     [SerializeField] private PlayerAttack weapon;
-    private bool isStunned = false;
 
     enum PlayerStates { Normal, Rolling, Stunned, Dead };
     private PlayerStates playerState;
@@ -22,12 +21,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementDirection;
     private float rollCooldownTimer;
     private Vector2 rollingDestination;
-    //private GameObject player = getComponent<GameObject>();
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+
     void Awake()
     {
         modifiedSpeed = baseSpeed;
         playerState = PlayerStates.Normal;
         rollCooldownTimer = rollCoolDown; //Player can roll at the start of the game, no need to wait
+        spriteRenderer = GetComponent<SpriteRenderer>();
         damage = 1;
     }
 
@@ -95,11 +96,11 @@ public class PlayerController : MonoBehaviour
     void setDirectionPlayer() {
         if (movementDirection.x < 0)
         {
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if (movementDirection.x > 0) // If moving right, reset scale to original
-        {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (movementDirection.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
     public void UseWeapon()
@@ -112,22 +113,18 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.tag == "Enemy")
         {
             Debug.Log("Player has collided with an enemy");
-            if (!isStunned)
+            if (playerState != PlayerStates.Rolling) //Player can't take damage while rolling
             {
+                StartCoroutine(FlashRed());
                 health.TakeDamage(1);
                 StunPlayer();
                 Debug.Log("Damage Taken! Health is " + health);
-            }
-            else
-            {
-                Debug.Log("Player is stunned");
             }
         }
     }
 
     public void StunPlayer()
     {
-        isStunned = true;
         playerState = PlayerStates.Stunned;
         StartCoroutine(UnStunAfterDelay(stunDuration));
     }
@@ -136,6 +133,17 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         playerState = PlayerStates.Normal;
-        isStunned = false;
+    }
+
+    private IEnumerator FlashRed()
+    {
+        // Change the color to red
+        spriteRenderer.color = Color.red;
+
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.1f);
+
+        // Change the color back to white (assuming the default color is white)
+        spriteRenderer.color = Color.white;
     }
 }
