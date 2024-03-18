@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
         scoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score.ToString("D4");
     }
 
-    public int GetScore()
+    public static int GetScore()
     {
         return score;
     }
