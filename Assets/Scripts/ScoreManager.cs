@@ -7,12 +7,7 @@ public class ScoreManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddScore(10);
-        }
-
-        scoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
+        scoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score.ToString("D4");
     }
 
     public int GetScore()
