@@ -9,9 +9,9 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            playerController.HandleRoll();
+            pauseMenuController.ToggleMenu();
         }
 
         if (!PauseMenuController.isPaused)
@@ -27,9 +27,9 @@ public class InputController : MonoBehaviour
                 playerAttack.UseWeapon();
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                pauseMenuController.ToggleMenu();
+                playerController.HandleRoll();
             }
         }
     }

@@ -12905,6 +12905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159622141}
+  - component: {fileID: 1159622143}
   - component: {fileID: 1159622140}
   - component: {fileID: 1159622142}
   m_Layer: 0
@@ -12956,6 +12957,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 1995843518}
   playerAttack: {fileID: 689231183}
+  pauseMenuController: {fileID: 1159622140}
+--- !u!114 &1159622143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159622139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9a3df3db167ec4e90837986a0f1d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   pauseMenuController: {fileID: 1159622140}
 --- !u!1 &1160525558
 GameObject:
@@ -13998,6 +14012,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 828004521}
+  - {fileID: 1159622141}
   - {fileID: 1449051811}
   - {fileID: 1995843517}
   - {fileID: 833570990}
@@ -14007,7 +14022,6 @@ SceneRoots:
   - {fileID: 1242445879}
   - {fileID: 13958533}
   - {fileID: 181756651}
-  - {fileID: 1159622141}
   - {fileID: 864275186513743968}
   - {fileID: 433578975}
   - {fileID: 1160525562}
