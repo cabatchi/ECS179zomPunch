@@ -11,6 +11,7 @@ public class ZombieController : MonoBehaviour
     private List<Transform> zombies; // List of nearby zombies
     public float separationRadius = .1f; // Radius to detect nearby zombies for separation
     public float separationWeight = .001f; // Weight of separation behavior
+    private ScoreManager scoreManager;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class ZombieController : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         zombies = new List<Transform>();
+        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
     }
 
     void Update()
@@ -78,6 +80,7 @@ public class ZombieController : MonoBehaviour
     {
         speed = 0;
         animator.SetBool("IsDead", true);
+        scoreManager.AddScore(100);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
