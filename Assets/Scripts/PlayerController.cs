@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private float rollCooldownTimer;
     private Vector2 rollingDestination;
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    private GameManager gameManager;
 
     void Awake()
     {
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         rollCooldownTimer = rollCoolDown; //Player can roll at the start of the game, no need to wait
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         damage = 1;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void HandleMove(Vector2 movementDirection)
@@ -131,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     private void onDeath()
     {
-        SceneManager.LoadScene("Game Over");
+        gameManager.TriggerGameOver();
     }
 
     public void StunPlayer()
