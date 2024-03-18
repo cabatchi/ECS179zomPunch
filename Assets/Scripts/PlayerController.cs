@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -91,9 +90,16 @@ public class PlayerController : MonoBehaviour
         setDirectionPlayer();
         gameObject.transform.Translate(movementDirection * Time.deltaTime * modifiedSpeed); //Basic movement
         animator.SetFloat("Speed", movementDirection.magnitude); //Enable or disable movement animation based on if there is input from player
+
+        if (health.health <= 0)
+        {
+            playerState = PlayerStates.Dead;
+            onDeath();
+        }
     }
 
-    void setDirectionPlayer() {
+    void setDirectionPlayer()
+    {
         if (movementDirection.x < 0)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
@@ -121,6 +127,11 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Damage Taken! Health is " + health);
             }
         }
+    }
+
+    private void onDeath()
+    {
+        SceneManager.LoadScene("Game Over");
     }
 
     public void StunPlayer()
