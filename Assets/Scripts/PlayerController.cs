@@ -121,6 +121,17 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Damage Taken! Health is " + health);
             }
         }
+        if (collider.gameObject.tag == "EnemyBullet")
+        {
+            Debug.Log("Player has collided with an enemy bullet");
+            if (playerState != PlayerStates.Rolling) //Player can't take damage while rolling
+            {
+                StartCoroutine(FlashRed());
+                health.TakeDamage(1);
+                StunPlayer();
+                Debug.Log("Damage Taken! Health is " + health);
+            }
+        }
     }
 
     public void StunPlayer()
