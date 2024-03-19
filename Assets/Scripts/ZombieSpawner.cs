@@ -4,10 +4,17 @@ using UnityEngine;
 public class ZombieSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject zombiePrefab;
+    [SerializeField] private GameObject giantZombiePrefab;
+    [SerializeField] private GameObject archerZombiePrefab;
+    [SerializeField] private GameObject magicZombiePrefab;
     [SerializeField] private Transform spawnPoint;
     public float spawnRate = 1f;
-    public float timebetweenWaves = 3f;
+    public float timeBetweenWaves = 3f;
     public static int currentWave = 1; // Static variable to track the current wave
+
+    public float giantZombieProbability = 0.05f; // Probability of spawning a giant zombie
+    public float archerZombieProbability = 0.05f; // Probability of spawning an archer zombie
+    public float magicZombieProbability = 0.05f; // Probability of spawning a magic zombie
 
     private bool waveIsDone = true;
     public int remainingZombies = 0;
@@ -33,7 +40,7 @@ public class ZombieSpawner : MonoBehaviour
             }
 
             // Wait for a while before starting the next wave
-            yield return new WaitForSeconds(timebetweenWaves);
+            yield return new WaitForSeconds(timeBetweenWaves);
 
             // Check if all zombies are gone
             while (remainingZombies > 0)
@@ -58,18 +65,34 @@ public class ZombieSpawner : MonoBehaviour
 
     void SpawnSingleZombie()
     {
-        if (zombiePrefab != null) 
+        float randomValue = Random.value;
+
+        if (randomValue < giantZombieProbability)
         {
-            GameObject zombie = Instantiate(zombiePrefab, spawnPoint.position, Quaternion.identity);
-            // zombie.GetComponent<ZombieToast>().OnDestroyed += OnZombieDestroyed;
-            remainingZombies++;
+            SpawnZombieOfType(giantZombiePrefab);
+        }
+        else if (randomValue < giantZombieProbability + archerZombieProbability)
+        {
+            SpawnZombieOfType(archerZombiePrefab);
+        }
+        else if (randomValue < giantZombieProbability + archerZombieProbability + magicZombieProbability)
+        {
+            SpawnZombieOfType(magicZombiePrefab);
+        }
+        else
+        {
+            SpawnZombieOfType(zombiePrefab); // Regular zombie
         }
     }
 
-    // void OnZombieDestroyed()
-    // {
-    //     remainingZombies--;
-    // }
+    void SpawnZombieOfType(GameObject zombieType)
+    {
+        if (zombieType != null) 
+        {
+            GameObject zombie = Instantiate(zombieType, spawnPoint.position, Quaternion.identity);
+            remainingZombies++;
+        }
+    }
 
     void UpdateRemainingZombies()
     {
