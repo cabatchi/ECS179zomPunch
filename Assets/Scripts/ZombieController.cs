@@ -24,7 +24,7 @@ public class ZombieController : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
+        if (target != null && health > 0)
         {
             // Move the zombie towards the player
             Vector2 direction = (target.position - transform.position).normalized;

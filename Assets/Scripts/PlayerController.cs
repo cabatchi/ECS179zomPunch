@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Begun Rolling");
             playerState = PlayerStates.Rolling;
-            rollingDestination = gameObject.transform.position + (Vector3)movementDirection * rollDistance;
+            rollingDestination = gameObject.transform.position + (Vector3)movementDirection * rollDistance *modifiedSpeed;
             rollCooldownTimer = 0.0f;
             animator.SetBool("Rolling", true);
             rolling();
