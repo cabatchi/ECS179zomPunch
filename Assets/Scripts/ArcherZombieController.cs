@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieController : MonoBehaviour
-{
+public class ArcherZombieController : MonoBehaviour
+{   
     public float speed = 3f;
     public float health = 1f;
     private Transform target;
@@ -12,30 +12,65 @@ public class ZombieController : MonoBehaviour
     public float separationRadius = .1f; // Radius to detect nearby zombies for separation
     public float separationWeight = .001f; // Weight of separation behavior
     private ScoreManager scoreManager;
+    public float stoppingDistance;
+    public float nearDistance;
+    public float startTimeBetweenShots;
+    public float projectileTime;
+    private float timeBetweenShots;
+    public float retreatDistance;
+    public GameObject shot;
 
     void Start()
     {
         // Find the player's transform using the tag "Player"
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
         zombies = new List<Transform>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        timeBetweenShots = startTimeBetweenShots;
     }
 
     void Update()
     {
-        if (target != null && health > 0)
+        if (target != null)
         {
-            // Move the zombie towards the player
-            Vector2 direction = (target.position - transform.position).normalized;
-            Vector2 moveDirection = direction * speed * Time.deltaTime;
 
-            // Apply flocking behavior
-            Vector2 separation = Separate();
-            moveDirection += (separation * separationWeight * Time.deltaTime);
 
-            transform.Translate(moveDirection);
-            animator.SetFloat("Speed", speed);
+            // // Move the zombie towards the player
+            // Vector2 direction = (target.position - transform.position).normalized;
+            // Vector2 moveDirection = direction * speed * Time.deltaTime;
+
+            // // Apply flocking behavior
+            // Vector2 separation = Separate();
+            // moveDirection += (separation * separationWeight * Time.deltaTime);
+
+            // transform.Translate(moveDirection);
+            if (Vector2.Distance(transform.position, target.position) < nearDistance) 
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
+            }
+            else if (Vector2.Distance(transform.position, target.position) > stoppingDistance) 
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            }
+            else if (Vector2.Distance(transform.position, target.position) < stoppingDistance && Vector2.Distance(transform.position, target.position) > retreatDistance) 
+            {
+                this.transform.position = transform.position;
+            }
+
+            // animator.SetFloat("Speed", speed);
+
+            // Instantiate(shot, transform.position, Quaternion.identity);
+            if (timeBetweenShots <= 0) 
+            {
+                Debug.Log("Shot!");
+                Instantiate(shot, transform.position, Quaternion.identity);
+                timeBetweenShots = startTimeBetweenShots;
+            } 
+            else 
+            {
+                timeBetweenShots -= Time.deltaTime;
+            }
         }
 
         // Destroy zombie
@@ -79,8 +114,9 @@ public class ZombieController : MonoBehaviour
     void OnDied()
     {
         speed = 0;
-        animator.SetBool("IsDead", true);
+        // animator.SetBool("IsDead", true);
         scoreManager.AddScore(100);
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

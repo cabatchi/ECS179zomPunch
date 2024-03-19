@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private float rollCooldownTimer;
     private Vector2 rollingDestination;
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    private GameManager gameManager;
 
     void Awake()
     {
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         rollCooldownTimer = rollCoolDown; //Player can roll at the start of the game, no need to wait
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         damage = 1;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void HandleMove(Vector2 movementDirection)
@@ -91,9 +92,16 @@ public class PlayerController : MonoBehaviour
         setDirectionPlayer();
         gameObject.transform.Translate(movementDirection * Time.deltaTime * modifiedSpeed); //Basic movement
         animator.SetFloat("Speed", movementDirection.magnitude); //Enable or disable movement animation based on if there is input from player
+
+        if (health.health <= 0)
+        {
+            playerState = PlayerStates.Dead;
+            onDeath();
+        }
     }
 
-    void setDirectionPlayer() {
+    void setDirectionPlayer()
+    {
         if (movementDirection.x < 0)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
@@ -121,6 +129,22 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Damage Taken! Health is " + health);
             }
         }
+        if (collider.gameObject.tag == "EnemyBullet")
+        {
+            Debug.Log("Player has collided with an enemy bullet");
+            if (playerState != PlayerStates.Rolling) //Player can't take damage while rolling
+            {
+                StartCoroutine(FlashRed());
+                health.TakeDamage(1);
+                StunPlayer();
+                Debug.Log("Damage Taken! Health is " + health);
+            }
+        }
+    }
+
+    private void onDeath()
+    {
+        gameManager.TriggerGameOver();
     }
 
     public void StunPlayer()
