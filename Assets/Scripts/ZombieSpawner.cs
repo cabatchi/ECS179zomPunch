@@ -11,6 +11,7 @@ public class ZombieSpawner : MonoBehaviour
 
     private bool waveIsDone = true;
     public int remainingZombies = 0;
+    public int spawnerType = 0;
 
     void Start()
     {
@@ -42,9 +43,17 @@ public class ZombieSpawner : MonoBehaviour
 
             // Start the next wave
             waveIsDone = true;
-            currentWave++;
+            if (spawnerType == 1) 
+            {
+                currentWave++;
+            }
             Debug.Log("Wave Updated to " + currentWave);
         }
+    }
+
+    void Update() 
+    {
+        UpdateRemainingZombies();
     }
 
     void SpawnSingleZombie()

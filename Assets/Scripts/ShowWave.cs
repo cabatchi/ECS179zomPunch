@@ -41,14 +41,18 @@ public class ShowWave : MonoBehaviour
     void UpdateZombiesRemaining()
     {
         int remainingZombies = 0;
-
-        // Sum up remaining zombies from all ZombieSpawner scripts
+        
         foreach (var spawner in spawnPointScripts)
         {
-            remainingZombies += spawner.remainingZombies;
+            if (spawner.spawnerType == 1) 
+            {
+                // Sum up remaining zombies only for spawners of type 1
+                remainingZombies += spawner.remainingZombies;
+            }
         }
 
         // Update the zombies remaining text
         zombiesRemaining.text = "Zoms Remaining: " + remainingZombies;
     }
+
 }
