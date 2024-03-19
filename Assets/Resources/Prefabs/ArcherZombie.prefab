@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7104071, g: 0.24959952, b: 0.745283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   stoppingDistance: 2
   nearDistance: 2
   startTimeBetweenShots: 2
+  projectileTime: 0
   retreatDistance: 1
   shot: {fileID: 608499301812628616, guid: 34405a78e82f24b4c819451bc52e9071, type: 3}
 --- !u!61 &7136237446059096359
