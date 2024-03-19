@@ -52,7 +52,7 @@ public class ShowWave : MonoBehaviour
         }
 
         // Update the zombies remaining text
-        zombiesRemaining.text = "Zoms Remaining: " + remainingZombies;
+        zombiesRemaining.text = "Zoms: " + remainingZombies;
     }
 
 }
