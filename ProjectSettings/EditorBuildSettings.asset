@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ZomPunch.unity
     guid: 7c7c1741a6d14774dbea90929806400f
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: 22880a2feb12dda4087749723f81c1bf
   m_configObjects: {}

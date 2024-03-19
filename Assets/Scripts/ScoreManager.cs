@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    private static int score;
+    private static int score = 0;
     public GameObject scoreText;
 
     public void Update()
@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
         scoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score.ToString("D4");
     }
 
-    public int GetScore()
+    public static int GetScore()
     {
         return score;
     }
