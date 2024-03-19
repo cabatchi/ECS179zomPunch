@@ -1,31 +1,71 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject zombiePrefab;
-    [SerializeField]
-    public Transform spawnPoint;
-    
+    [SerializeField] private GameObject zombiePrefab;
+    [SerializeField] private Transform spawnPoint;
+    public float spawnRate = 1f;
+    public float timebetweenWaves = 3f;
+    public static int currentWave = 1; // Static variable to track the current wave
+
+    private bool waveIsDone = true;
+    public int remainingZombies = 0;
+
     void Start()
     {
-        StartCoroutine(SpawnZombie());
+        if (waveIsDone) 
+        {
+            StartCoroutine(SpawnZombie());
+        }
     }
+
     IEnumerator SpawnZombie()
     {
         while (true)
         {
-            // Wait for a random time between 1 to 10 seconds
-            float spawnDelay = Random.Range(1f, 10f);
-            yield return new WaitForSeconds(spawnDelay);
-
-            // Spawn the zombie at the spawn point
-            if (zombiePrefab != null) 
+            // Spawn zombies for the current wave
+            for (int i = 0; i < currentWave * 3; i++) 
             {
-                Instantiate(zombiePrefab, spawnPoint.position, Quaternion.identity);
+                SpawnSingleZombie();
+                yield return new WaitForSeconds(spawnRate);
             }
+
+            // Wait for a while before starting the next wave
+            yield return new WaitForSeconds(timebetweenWaves);
+
+            // Check if all zombies are gone
+            while (remainingZombies > 0)
+            {
+                yield return null; // Wait until all zombies are gone
+            }
+
+            // Start the next wave
+            waveIsDone = true;
+            currentWave++;
+            Debug.Log("Wave Updated to " + currentWave);
         }
+    }
+
+    void SpawnSingleZombie()
+    {
+        if (zombiePrefab != null) 
+        {
+            GameObject zombie = Instantiate(zombiePrefab, spawnPoint.position, Quaternion.identity);
+            // zombie.GetComponent<ZombieToast>().OnDestroyed += OnZombieDestroyed;
+            remainingZombies++;
+        }
+    }
+
+    // void OnZombieDestroyed()
+    // {
+    //     remainingZombies--;
+    // }
+
+    void UpdateRemainingZombies()
+    {
+        // Count zombies by adding all game objects with the "Enemy" tag
+        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Enemy");
+        remainingZombies = zombies.Length;
     }
 }
