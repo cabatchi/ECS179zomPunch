@@ -5,7 +5,12 @@ public class HealthBuff : PowerupEffect
 {
     public int amount;
 
-    public override void Apply(GameObject target) 
+    public void OnEnable()
+    {
+        powerUpType = PowerUpType.HealthBuff;
+    }
+
+    public override void Apply(GameObject target)
     {
         target.GetComponent<Health>().health += amount;
     }

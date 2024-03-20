@@ -4,7 +4,13 @@ using UnityEngine;
 public class DamageBuff : PowerupEffect
 {
     public int amount;
-    public override void Apply(GameObject target) 
+
+    public void OnEnable()
+    {
+        powerUpType = PowerUpType.DamageBuff;
+    }
+
+    public override void Apply(GameObject target)
     {
         target.GetComponent<PlayerController>().damage += amount;
     }

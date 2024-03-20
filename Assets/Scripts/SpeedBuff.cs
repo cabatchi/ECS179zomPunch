@@ -4,7 +4,13 @@ using UnityEngine;
 public class SpeedBuff : PowerupEffect
 {
     public float amount;
-    public override void Apply(GameObject target) 
+
+    public void OnEnable()
+    {
+        powerUpType = PowerUpType.SpeedBuff;
+    }
+
+    public override void Apply(GameObject target)
     {
         target.GetComponent<PlayerController>().modifiedSpeed += amount;
     }

@@ -4,7 +4,13 @@ using UnityEngine;
 public class RangeBuff : PowerupEffect
 {
     public float amount;
-    public override void Apply(GameObject target) 
+
+    public void OnEnable()
+    {
+        powerUpType = PowerUpType.RangeBuff;
+    }
+
+    public override void Apply(GameObject target)
     {
         PlayerAttack playerAttack = target.GetComponentInChildren<PlayerAttack>();
         if (playerAttack != null)
