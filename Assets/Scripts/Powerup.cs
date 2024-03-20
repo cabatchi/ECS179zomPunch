@@ -6,13 +6,18 @@ public class Powerup : MonoBehaviour
 {
     public PowerupEffect powerupEffect;
 
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Collided with powerup");
             Destroy(gameObject);
-            powerupEffect.Apply(collision.gameObject);
+            PowerUpType powerUpType = powerupEffect.GetPowerUpType();
+
+            GameObject target = collision.gameObject;
+            target.GetComponent<PowerUpsController>().AddPowerUp(powerUpType);
+
+            powerupEffect.Apply(target);
         }
     }
 }

@@ -3,8 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Powerups/RangeBuff")]
 public class RangeBuff : PowerupEffect
 {
+    private PowerUpType powerUpType = PowerUpType.RangeBuff;
     public float amount;
-    public override void Apply(GameObject target) 
+    public override void Apply(GameObject target)
     {
         PlayerAttack playerAttack = target.GetComponentInChildren<PlayerAttack>();
         if (playerAttack != null)
