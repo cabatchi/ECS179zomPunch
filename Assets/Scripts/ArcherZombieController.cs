@@ -24,7 +24,7 @@ public class ArcherZombieController : MonoBehaviour
     {
         // Find the player's transform using the tag "Player"
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        // animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         zombies = new List<Transform>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
         timeBetweenShots = startTimeBetweenShots;
@@ -34,17 +34,6 @@ public class ArcherZombieController : MonoBehaviour
     {
         if (target != null)
         {
-
-
-            // // Move the zombie towards the player
-            // Vector2 direction = (target.position - transform.position).normalized;
-            // Vector2 moveDirection = direction * speed * Time.deltaTime;
-
-            // // Apply flocking behavior
-            // Vector2 separation = Separate();
-            // moveDirection += (separation * separationWeight * Time.deltaTime);
-
-            // transform.Translate(moveDirection);
             if (Vector2.Distance(transform.position, target.position) < nearDistance) 
             {
                 transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
@@ -58,10 +47,10 @@ public class ArcherZombieController : MonoBehaviour
                 this.transform.position = transform.position;
             }
 
-            // animator.SetFloat("Speed", speed);
+            animator.SetFloat("Speed", speed);
 
             // Instantiate(shot, transform.position, Quaternion.identity);
-            if (timeBetweenShots <= 0) 
+            if (timeBetweenShots <= 0 && health > 0) 
             {
                 Debug.Log("Shot!");
                 Instantiate(shot, transform.position, Quaternion.identity);
@@ -76,25 +65,6 @@ public class ArcherZombieController : MonoBehaviour
         // Destroy zombie
     }
 
-    Vector2 Separate()
-    {
-        Vector2 separation = Vector2.zero;
-
-        foreach (Transform zombie in zombies)
-        {
-            if (zombie != null)
-            {
-                Vector2 toOther = transform.position - zombie.position;
-                float distance = toOther.magnitude;
-                if (distance < separationRadius)
-                {
-                    separation += toOther.normalized / distance;
-                }
-            }
-        }
-
-        return separation.normalized;
-    }
 
     public void TakeDamage(float damage)
     {
@@ -114,9 +84,8 @@ public class ArcherZombieController : MonoBehaviour
     void OnDied()
     {
         speed = 0;
-        // animator.SetBool("IsDead", true);
+        animator.SetBool("IsDead", true);
         scoreManager.AddScore(100);
-        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
