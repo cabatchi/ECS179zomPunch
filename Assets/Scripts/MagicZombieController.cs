@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class MagicZombieController : MonoBehaviour
 {   
-    public float speed = 3f;
+    public float speed = 1f;
     public float health = 1f;
     private Transform target;
     private Animator animator;
-    private List<Transform> zombies; // List of nearby zombies
-    public float separationRadius = .1f; // Radius to detect nearby zombies for separation
-    public float separationWeight = .001f; // Weight of separation behavior
     private ScoreManager scoreManager;
     public float stoppingDistance;
     public float nearDistance;
@@ -18,13 +15,12 @@ public class MagicZombieController : MonoBehaviour
     private float timeBetweenShots;
     public float retreatDistance;
     public GameObject shot;
-
+    private bool isAttacking = false;
     void Start()
     {
         // Find the player's transform using the tag "Player"
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        // animator = GetComponent<Animator>();
-        zombies = new List<Transform>();
+        animator = GetComponent<Animator>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
         timeBetweenShots = startTimeBetweenShots;
     }
@@ -33,17 +29,6 @@ public class MagicZombieController : MonoBehaviour
     {
         if (target != null)
         {
-
-
-            // // Move the zombie towards the player
-            // Vector2 direction = (target.position - transform.position).normalized;
-            // Vector2 moveDirection = direction * speed * Time.deltaTime;
-
-            // // Apply flocking behavior
-            // Vector2 separation = Separate();
-            // moveDirection += (separation * separationWeight * Time.deltaTime);
-
-            // transform.Translate(moveDirection);
             if (Vector2.Distance(transform.position, target.position) < nearDistance) 
             {
                 transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
@@ -57,42 +42,23 @@ public class MagicZombieController : MonoBehaviour
                 this.transform.position = transform.position;
             }
 
-            // animator.SetFloat("Speed", speed);
+            animator.SetFloat("Speed", speed);
 
             // Instantiate(shot, transform.position, Quaternion.identity);
-            if (timeBetweenShots <= 0) 
+            if(isAttacking == false)
             {
-                Debug.Log("Shot!");
-                Instantiate(shot, transform.position, Quaternion.identity);
-                timeBetweenShots = startTimeBetweenShots;
-            } 
-            else 
-            {
-                timeBetweenShots -= Time.deltaTime;
-            }
-        }
-
-        // Destroy zombie
-    }
-
-    Vector2 Separate()
-    {
-        Vector2 separation = Vector2.zero;
-
-        foreach (Transform zombie in zombies)
-        {
-            if (zombie != null)
-            {
-                Vector2 toOther = transform.position - zombie.position;
-                float distance = toOther.magnitude;
-                if (distance < separationRadius)
+                if (timeBetweenShots <= 0 && health > 0) 
                 {
-                    separation += toOther.normalized / distance;
+                    Debug.Log("Shot!");
+                    StartCoroutine(StandStillAndShoot());
+                    timeBetweenShots = startTimeBetweenShots;
+                } 
+                else 
+                {
+                    timeBetweenShots -= Time.deltaTime;
                 }
             }
         }
-
-        return separation.normalized;
     }
 
     public void TakeDamage(float damage)
@@ -113,9 +79,8 @@ public class MagicZombieController : MonoBehaviour
     void OnDied()
     {
         speed = 0;
-        // animator.SetBool("IsDead", true);
+        animator.SetBool("IsDead", true);
         scoreManager.AddScore(100);
-        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -135,19 +100,19 @@ public class MagicZombieController : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    IEnumerator StandStillAndShoot()
     {
-        if (other.CompareTag("Enemy"))
-        {
-            zombies.Add(other.transform);
-        }
-    }
+        // Stand still
+        speed = 0;
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            zombies.Remove(other.transform);
-        }
+        // Shoot projectile
+        isAttacking = true;
+        animator.SetBool("IsAttacking", true);
+        Instantiate(shot, transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(1.1f); // Wait for the animation to finish
+        animator.SetBool("IsAttacking", false);
+        isAttacking = false;
+        speed = 1; // Begin Moving again
     }
 }

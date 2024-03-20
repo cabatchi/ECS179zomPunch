@@ -574,6 +574,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1886070, guid: 06ef52ae49b790f45b5a50614f5e138f, type: 3}
+    - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4688087831979190837, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
@@ -614,6 +630,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6821313
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.69802403
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0635736
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.19866788
+      objectReference: {fileID: 0}
     - target: {fileID: 8998650234614043576, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       propertyPath: m_Name
       value: MagicZombie
@@ -626,6 +658,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8998650234614043576, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       insertIndex: 2
       addedObject: {fileID: 617667673}
+    - targetCorrespondingSourceObject: {fileID: 8998650234614043576, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 617667674}
   m_SourcePrefab: {fileID: 100100000, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
 --- !u!1 &302797060
 GameObject:
@@ -1030,16 +1065,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1917068167, guid: 54e27641807173e45bf90a3b4059a399, type: 3}
+    - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       propertyPath: m_Color.b
-      value: 0.16789784
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       propertyPath: m_Color.g
-      value: 0.21112067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118542358898686218, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       propertyPath: m_Color.r
-      value: 0.7264151
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4688087831979190837, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1081,6 +1120,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6026635
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.60266376
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.03973365
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136237446059096359, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.23045504
+      objectReference: {fileID: 0}
     - target: {fileID: 8998650234614043576, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
       propertyPath: m_Name
       value: ArcherZombie
@@ -1088,7 +1143,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8998650234614043576, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1334003725}
   m_SourcePrefab: {fileID: 100100000, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
 --- !u!1 &617667671 stripped
 GameObject:
@@ -1109,13 +1167,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   health: 2
-  separationRadius: 0.1
-  separationWeight: 0.001
   stoppingDistance: 2
   nearDistance: 2
   startTimeBetweenShots: 2
   retreatDistance: 2
   shot: {fileID: 2499901165716100077, guid: 9f1d0eae0e6b04bc1a56290c77815f0a, type: 3}
+--- !u!95 &617667674
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617667671}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad03b68e5966e9048818e06a8f551f52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &682114818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,6 +2043,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1574223835475173285, guid: b43ec441221f140e98007950a1b6a08d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 31084a5e48d212a4ea7b376ccb2a8b44, type: 2}
     - target: {fileID: 5596275406865494928, guid: b43ec441221f140e98007950a1b6a08d, type: 3}
       propertyPath: m_Name
       value: GiantZombieToast
@@ -2010,6 +2091,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8252013809664627557, guid: b43ec441221f140e98007950a1b6a08d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1175113534, guid: 6627551a98a1fb545b39e42dba2af599, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -136847,6 +136932,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1334003724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8998650234614043576, guid: c0a227ad878cd483ba71dc5fc1881cd0, type: 3}
+  m_PrefabInstance: {fileID: 579630241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1334003725
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334003724}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9b0d5fffe63a1a4d9d04d81e380a817, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1383012212
 GameObject:
   m_ObjectHideFlags: 0
