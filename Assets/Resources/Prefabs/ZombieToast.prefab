@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2992449797758433199}
   - component: {fileID: 6704459084199461384}
   - component: {fileID: -4257600671997513447}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ZombieToast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
