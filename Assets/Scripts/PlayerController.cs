@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 rollingDestination;
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     private GameManager gameManager;
+    private Rigidbody2D rb;
 
     void Awake()
     {
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         damage = 1;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void HandleMove(Vector2 movementDirection)
@@ -42,36 +44,51 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Punching");
     }
-
     public void HandleRoll()
     {
         if (rollCooldownTimer >= rollCoolDown && playerState == PlayerStates.Normal)
         {
-            Debug.Log("Begun Rolling");
-            playerState = PlayerStates.Rolling;
-            rollingDestination = gameObject.transform.position + (Vector3)movementDirection * rollDistance *modifiedSpeed;
-            rollCooldownTimer = 0.0f;
-            animator.SetBool("Rolling", true);
-            rolling();
+            // Check if the player is not colliding with an object tagged as "Boundary"
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(1f, 1f), 0f);
+            bool canRoll = true;
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Boundary"))
+                {
+                    // If colliding with a "Boundary" object, prevent rolling
+                    canRoll = false;
+                    Debug.Log("Cannot roll because of the boundary.");
+                    break;
+                }
+            }
+
+            // If not colliding with a "Boundary" object, initiate the roll
+            if (canRoll)
+            {
+                Debug.Log("Begun Rolling");
+                playerState = PlayerStates.Rolling;
+                rollingDestination = transform.position + (Vector3)movementDirection * rollDistance * modifiedSpeed;
+                rollCooldownTimer = 0.0f;
+                animator.SetBool("Rolling", true);
+                rolling();
+            }
         }
         else
         {
-            Debug.Log("Roll is on cooldown");
+            Debug.Log("Roll is on cooldown or player is not in normal state.");
         }
-
     }
     public void rolling()
     {
+        Vector2 newPosition = Vector2.Lerp(gameObject.transform.position, rollingDestination, 6.0f * Time.deltaTime);
+        gameObject.transform.position = newPosition;
         if (Vector2.Distance(rollingDestination, (Vector2)gameObject.transform.position) < 0.1)
         {
             playerState = PlayerStates.Normal;
             animator.SetBool("Rolling", false);
             return;
         }
-        Vector2 newPosition = Vector2.Lerp(gameObject.transform.position, rollingDestination, 6.0f * Time.deltaTime);
-        gameObject.transform.position = newPosition;
     }
-
 
     void Update()
     {
@@ -140,6 +157,20 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Damage Taken! Health is " + health);
             }
         }
+        if (collider.gameObject.CompareTag("Boundary") && playerState == PlayerStates.Normal)
+        {
+            Debug.Log("Tried getting out of map...");
+            // Reverse the direction of rolling
+            movementDirection *= -1;
+            rollingDestination = (Vector2)transform.position + movementDirection * rollDistance * modifiedSpeed;
+        }
+        if (collider.gameObject.CompareTag("Boundary") && playerState == PlayerStates.Rolling)
+        {
+            Debug.Log("Hit wall while rolling...");
+            // Reverse the direction of rolling
+            movementDirection *= -1;
+            rollingDestination = (Vector2)transform.position + movementDirection * rollDistance * modifiedSpeed;
+        }
     }
 
     private void onDeath()
@@ -170,4 +201,5 @@ public class PlayerController : MonoBehaviour
         // Change the color back to white (assuming the default color is white)
         spriteRenderer.color = Color.white;
     }
+
 }

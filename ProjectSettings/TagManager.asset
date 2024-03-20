@@ -8,11 +8,12 @@ TagManager:
   - Weapon
   - Bullet
   - EnemyBullet
+  - Boundary
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NonCollisions
   - Water
   - UI
   - 
