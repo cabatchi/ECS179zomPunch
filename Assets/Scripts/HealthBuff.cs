@@ -3,9 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Powerups/HealthBuff")]
 public class HealthBuff : PowerupEffect
 {
-    private PowerUpType powerUpType = PowerUpType.HealthBuff;
-
     public int amount;
+
+    public void OnEnable()
+    {
+        powerUpType = PowerUpType.HealthBuff;
+    }
 
     public override void Apply(GameObject target)
     {

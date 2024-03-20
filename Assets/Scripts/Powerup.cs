@@ -15,7 +15,7 @@ public class Powerup : MonoBehaviour
             PowerUpType powerUpType = powerupEffect.GetPowerUpType();
 
             GameObject target = collision.gameObject;
-            target.GetComponent<PowerUpsController>().AddPowerUp(powerUpType);
+            target.GetComponent<PlayerPowerUpsController>().AddPowerUp(powerUpType);
 
             powerupEffect.Apply(target);
         }

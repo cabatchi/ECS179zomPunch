@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpsController : MonoBehaviour
+public class PlayerPowerUpsController : MonoBehaviour
 {
     private Dictionary<PowerUpType, int> powerUpCounts = new Dictionary<PowerUpType, int>
     {
