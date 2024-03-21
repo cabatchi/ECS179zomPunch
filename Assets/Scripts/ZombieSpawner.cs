@@ -16,47 +16,51 @@ public class ZombieSpawner : MonoBehaviour
     public float archerZombieProbability = 0.05f; // Probability of spawning an archer zombie
     public float magicZombieProbability = 0.05f; // Probability of spawning a magic zombie
 
-    private bool waveIsDone = true;
+    private bool waveIsDone = false;
     public int remainingZombies = 0;
     public int spawnerType = 0;
 
     void Start()
     {
-        if (waveIsDone) 
+        if (!waveIsDone) 
         {
             StartCoroutine(SpawnZombie());
         }
     }
 
-    IEnumerator SpawnZombie()
+   IEnumerator SpawnZombie()
     {
         while (true)
         {
-            // Spawn zombies for the current wave
-            for (int i = 0; i < currentWave * 3; i++) 
+            for (int i = 0; i < currentWave; i++) 
             {
                 SpawnSingleZombie();
                 yield return new WaitForSeconds(spawnRate);
             }
 
-            // Wait for a while before starting the next wave
             yield return new WaitForSeconds(timeBetweenWaves);
 
-            // Check if all zombies are gone
             while (remainingZombies > 0)
             {
-                yield return null; // Wait until all zombies are gone
+                yield return null;
             }
 
-            // Start the next wave
             waveIsDone = true;
+
+            while (!Input.GetKeyDown(KeyCode.K))
+            {
+                yield return null;
+            }
+            
             if (spawnerType == 1) 
             {
+                waveIsDone = false;
                 currentWave++;
+                Debug.Log("Wave Updated to " + currentWave);
             }
-            Debug.Log("Wave Updated to " + currentWave);
         }
     }
+
 
     void Update() 
     {
