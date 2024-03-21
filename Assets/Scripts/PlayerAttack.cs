@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
     public bool canFire;
     public float timer;
     public float timeBetweenFiring;
-    public float despawnDelay = 0.50f;
+    public float despawnDelay = 1f;
     float timeUntilMelee;
 
     void Start()

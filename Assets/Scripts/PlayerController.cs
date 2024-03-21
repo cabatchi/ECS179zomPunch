@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rollDistance = 20.0f;
     [SerializeField] private Animator animator;
     [SerializeField] private Health health;
-    [SerializeField] public float damage = 1;
+    [SerializeField] public float damage = 0.5f;
     [SerializeField] private float stunDuration = 1.0f;
     [SerializeField] private PlayerAttack weapon;
 

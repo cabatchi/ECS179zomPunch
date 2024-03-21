@@ -20,6 +20,11 @@ public class ScoreManager : MonoBehaviour
         score += value;
     }
 
+    public void SubtractScore(int value)
+    {
+        score -= value;
+    }
+
     public void ResetScore()
     {
         score = 0;

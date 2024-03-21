@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class ZombieSpawner : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class ZombieSpawner : MonoBehaviour
     public float archerZombieProbability = 0.05f; // Probability of spawning an archer zombie
     public float magicZombieProbability = 0.05f; // Probability of spawning a magic zombie
 
-    private bool waveIsDone = false;
+    public static bool waveIsDone = false;
+    // public static event Action WaveDone;
     public int remainingZombies = 0;
     public int spawnerType = 0;
 
@@ -46,8 +48,8 @@ public class ZombieSpawner : MonoBehaviour
             }
 
             waveIsDone = true;
-
-            while (!Input.GetKeyDown(KeyCode.K))
+            // WaveDone?.Invoke();
+            while (!Input.GetKeyDown(KeyCode.I))
             {
                 yield return null;
             }
@@ -69,7 +71,7 @@ public class ZombieSpawner : MonoBehaviour
 
     void SpawnSingleZombie()
     {
-        float randomValue = Random.value;
+        float randomValue = UnityEngine.Random.value;
 
         if (randomValue < giantZombieProbability)
         {
