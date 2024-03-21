@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float damage = 0.5f;
     [SerializeField] private float stunDuration = 1.0f;
     [SerializeField] private PlayerAttack weapon;
+    [SerializeField] private float timeBeforeHealingStarts = 5.0f; 
+    [SerializeField] private float healingInterval = 2.0f; 
+    [SerializeField] private int healAmount = 1; 
 
     enum PlayerStates { Normal, Rolling, Stunned, Dead };
     private PlayerStates playerState;
@@ -23,6 +26,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     private GameManager gameManager;
     private Rigidbody2D rb;
+    private Coroutine healingCoroutine;
+    private bool canHeal = false;
+    private float lastHitTime = 0f;
 
     void Awake()
     {
@@ -33,6 +39,7 @@ public class PlayerController : MonoBehaviour
         damage = 1;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody2D>();
+        healingCoroutine = StartCoroutine(HealOverTime());
     }
 
     public void HandleMove(Vector2 movementDirection)
@@ -144,6 +151,7 @@ public class PlayerController : MonoBehaviour
                 health.TakeDamage(1);
                 StunPlayer();
                 Debug.Log("Damage Taken! Health is " + health);
+                lastHitTime = Time.time;
             }
         }
         if (collider.gameObject.tag == "EnemyBullet")
@@ -155,6 +163,7 @@ public class PlayerController : MonoBehaviour
                 health.TakeDamage(1);
                 StunPlayer();
                 Debug.Log("Damage Taken! Health is " + health);
+                lastHitTime = Time.time;
             }
         }
         if (collider.gameObject.CompareTag("Boundary") && playerState == PlayerStates.Normal)
@@ -200,6 +209,27 @@ public class PlayerController : MonoBehaviour
 
         // Change the color back to white (assuming the default color is white)
         spriteRenderer.color = Color.white;
+    }
+
+    IEnumerator HealOverTime()
+    {
+        yield return new WaitForSeconds(timeBeforeHealingStarts);
+
+        canHeal = true;
+
+        while (true)
+        {
+            if (canHeal && Time.time - lastHitTime > timeBeforeHealingStarts)
+            {
+                // Increment health by healAmount
+                health.health += healAmount;
+
+                // Ensure health doesn't exceed the maximum number of hearts
+                health.health = Mathf.Min(health.health, health.numOfHearts);
+            }
+
+            yield return new WaitForSeconds(healingInterval);
+        }
     }
 
 }
