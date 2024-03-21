@@ -27,7 +27,7 @@ public class InputController : MonoBehaviour
                 playerAttack.UseWeapon();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 playerController.HandleRoll();
             }
