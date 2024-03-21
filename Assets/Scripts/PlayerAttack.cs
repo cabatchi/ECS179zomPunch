@@ -33,8 +33,8 @@ public class PlayerAttack : MonoBehaviour
         {
             canFire = false;
             GameObject bulletInstance = Instantiate(bullet, bulletTransform.position, Quaternion.identity);
-            FindObjectOfType<SoundManager>().PlaySoundEffect("Punch");
             Destroy(bulletInstance, despawnDelay);
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Punch");
         }
     }
 
