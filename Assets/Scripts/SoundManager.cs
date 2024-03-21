@@ -73,6 +73,42 @@ public class SoundManager : MonoBehaviour
     }
 
 
+    public void FadeMusicTrack(string title, float duration)
+    {
+        var track = this.musicTracks.Find(track => track.title == title);
+
+        if (null == track)
+        {
+            Debug.Log("Sound track not found: " + title);
+            return;
+        }
+
+        if (null != this.trackFading)
+        {
+            this.trackFading.audioSource.Stop();
+        }
+
+        this.trackFading = track;
+
+        StartCoroutine(FadeTrack(this.trackPlaying, this.trackFading, duration));
+    }
+
+    private IEnumerator FadeTrack(SoundClip trackPlaying, SoundClip trackFading, float duration)
+    {
+        float startVolume = trackPlaying.audioSource.volume;
+
+        while (trackPlaying.audioSource.volume > 0)
+        {
+            trackPlaying.audioSource.volume -= startVolume * Time.deltaTime / duration;
+            trackFading.audioSource.volume += startVolume * Time.deltaTime / duration;
+            yield return null;
+        }
+
+        trackPlaying.audioSource.Stop();
+        trackFading.audioSource.volume = startVolume;
+        this.trackPlaying = trackFading;
+    }
+
     public void PlaySoundEffect(string title)
     {
         var track = this.sfxClips.Find(track => track.title == title);

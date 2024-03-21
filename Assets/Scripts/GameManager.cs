@@ -7,15 +7,19 @@ public class GameManager : MonoBehaviour
     public PauseMenuController pauseMenuController;
     public ScoreManager scoreManager;
     public UnityEngine.UI.Image fadeImage;
+    public SoundManager soundManager;
 
     void Start()
     {
         pauseMenuController.ResumeGame();
         scoreManager.ResetScore();
+        soundManager.PlayMusicTrack("Theme");
     }
 
     public void TriggerGameOver()
     {
+        soundManager.FadeMusicTrack("Theme", 0.5f);
+        soundManager.PlaySoundEffect("Game Over");
         StartCoroutine(FadeToBlack());
     }
 
