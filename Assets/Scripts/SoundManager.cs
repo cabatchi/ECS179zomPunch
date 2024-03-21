@@ -83,6 +83,17 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        track.audioSource.Play();
+        // Create a new AudioSource
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+
+        // Assign the AudioClip and AudioMixerGroup from the found track to the new AudioSource
+        audioSource.clip = track.audioSource.clip;
+        audioSource.outputAudioMixerGroup = track.audioSource.outputAudioMixerGroup;
+
+        // Play the sound effect on the new AudioSource
+        audioSource.Play();
+
+        // Destroy the AudioSource after the sound effect has finished playing
+        Destroy(audioSource, audioSource.clip.length);
     }
 }
