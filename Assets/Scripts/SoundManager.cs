@@ -124,6 +124,8 @@ public class SoundManager : MonoBehaviour
 
         // Assign the AudioClip and AudioMixerGroup from the found track to the new AudioSource
         audioSource.clip = track.audioSource.clip;
+        audioSource.volume = track.audioSource.volume;
+        audioSource.pitch = track.audioSource.pitch;
         audioSource.outputAudioMixerGroup = track.audioSource.outputAudioMixerGroup;
 
         // Play the sound effect on the new AudioSource
