@@ -162,14 +162,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Tried getting out of map...");
             // Reverse the direction of rolling
             movementDirection *= -1;
-            rollingDestination = (Vector2)transform.position + movementDirection * rollDistance * modifiedSpeed;
+            rollingDestination = (Vector2)transform.position + movementDirection * rollDistance * modifiedSpeed *1/10;
         }
         if (collider.gameObject.CompareTag("Boundary") && playerState == PlayerStates.Rolling)
         {
             Debug.Log("Hit wall while rolling...");
             // Reverse the direction of rolling
             movementDirection *= -1;
-            rollingDestination = (Vector2)transform.position + movementDirection * rollDistance * modifiedSpeed;
+            rollingDestination = (Vector2)transform.position + movementDirection * rollDistance * modifiedSpeed *1/10;
         }
     }
 
