@@ -72,7 +72,6 @@ public class SoundManager : MonoBehaviour
         this.trackPlaying = track;
     }
 
-
     public void FadeMusicTrack(string title, float duration)
     {
         var track = this.musicTracks.Find(track => track.title == title);

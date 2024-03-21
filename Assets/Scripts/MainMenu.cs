@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject controlsMenu;
+    public SoundManager soundManager;
+
+    void Start()
+    {
+        soundManager.PlayMusicTrack("Theme");
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync("ZomPunch");
