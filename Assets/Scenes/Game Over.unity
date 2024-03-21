@@ -445,6 +445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497566859}
   - component: {fileID: 497566858}
+  - component: {fileID: 497566860}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -465,6 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 747750556}
+  soundManager: {fileID: 497566860}
 --- !u!4 &497566859
 Transform:
   m_ObjectHideFlags: 0
@@ -480,6 +482,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &497566860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497566857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7d2a866efdc18418c2583d981fe91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicMixerGroup: {fileID: -7802871821760928576, guid: 98962b00c8e4a07418b3ca90ba47a5ed, type: 2}
+  sfxMixerGroup: {fileID: -5514887378846270790, guid: 98962b00c8e4a07418b3ca90ba47a5ed, type: 2}
+  musicTracks:
+  - clip: {fileID: 8300000, guid: 07d6fa39a899fb1478e45a04e6db9c75, type: 3}
+    audioSource: {fileID: 0}
+    title: Game Over
+    volume: 1
+    pitch: 1
+    loop: 1
+  sfxClips: []
 --- !u!1 &747750556
 GameObject:
   m_ObjectHideFlags: 0
