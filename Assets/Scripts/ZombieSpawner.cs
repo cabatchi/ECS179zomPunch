@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class ZombieSpawner : MonoBehaviour
 {
@@ -16,19 +17,20 @@ public class ZombieSpawner : MonoBehaviour
     public float archerZombieProbability = 0.05f; // Probability of spawning an archer zombie
     public float magicZombieProbability = 0.05f; // Probability of spawning a magic zombie
 
-    private bool waveIsDone = true;
+    public static bool waveIsDone = false;
+    // public static event Action WaveDone;
     public int remainingZombies = 0;
     public int spawnerType = 0;
 
     void Start()
     {
-        if (waveIsDone)
+        if (!waveIsDone) 
         {
             StartCoroutine(SpawnZombie());
         }
     }
 
-    IEnumerator SpawnZombie()
+   IEnumerator SpawnZombie()
     {
         while (true)
         {
@@ -39,24 +41,29 @@ public class ZombieSpawner : MonoBehaviour
                 yield return new WaitForSeconds(spawnRate);
             }
 
-            // Wait for a while before starting the next wave
             yield return new WaitForSeconds(timeBetweenWaves);
 
-            // Check if all zombies are gone
             while (remainingZombies > 0)
             {
-                yield return null; // Wait until all zombies are gone
+                yield return null;
             }
 
-            // Start the next wave
             waveIsDone = true;
-            if (spawnerType == 1)
+            // WaveDone?.Invoke();
+            while (!Input.GetKeyDown(KeyCode.I))
             {
-                currentWave++;
+                yield return null;
             }
-            Debug.Log("Wave Updated to " + currentWave);
+            
+            if (spawnerType == 1) 
+            {
+                waveIsDone = false;
+                currentWave++;
+                Debug.Log("Wave Updated to " + currentWave);
+            }
         }
     }
+
 
     void Update()
     {
@@ -65,7 +72,7 @@ public class ZombieSpawner : MonoBehaviour
 
     void SpawnSingleZombie()
     {
-        float randomValue = Random.value;
+        float randomValue = UnityEngine.Random.value;
 
         if (randomValue < giantZombieProbability)
         {

@@ -92,7 +92,7 @@ public class ArcherZombieController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Weapon")
         {
-            Debug.Log("Sword -> Zombie");
+            // Debug.Log("Sword -> Zombie");
             TakeDamage(1);
         }
         if (collider.gameObject.tag == "Bullet")
@@ -100,7 +100,7 @@ public class ArcherZombieController : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             PlayerController playerController = player.GetComponent<PlayerController>();
             float damage = playerController.damage;
-            Debug.Log("Bullet -> Zombie" + damage);
+            // Debug.Log("Bullet -> Zombie" + damage);
             TakeDamage(damage);
         }
     }
