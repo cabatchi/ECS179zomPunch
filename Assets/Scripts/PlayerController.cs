@@ -25,10 +25,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 rollingDestination;
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     private GameManager gameManager;
+    private PlayerPowerUpsController powerUpsController;
     private Rigidbody2D rb;
     private Coroutine healingCoroutine;
     private bool canHeal = false;
     private float lastHitTime = 0f;
+    
 
     void Awake()
     {
@@ -40,6 +42,12 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         healingCoroutine = StartCoroutine(HealOverTime());
+        powerUpsController = FindObjectOfType<PlayerPowerUpsController>();
+        if (powerUpsController != null)
+        {
+            // Start the healing coroutine if the power-ups controller is found
+            healingCoroutine = StartCoroutine(HealOverTime());
+        }
     }
 
     public void HandleMove(Vector2 movementDirection)
@@ -213,13 +221,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator HealOverTime()
     {
-        yield return new WaitForSeconds(timeBeforeHealingStarts);
+        float timeBeforeHealingStartsNew = timeBeforeHealingStarts / (powerUpsController.GetPowerUpCount(PowerUpType.HealthBuff) + 1);
+
+        yield return new WaitForSeconds(timeBeforeHealingStartsNew);
+        // Debug.Log(powerUpsController.GetPowerUpCount(PowerUpType.HealthBuff) + 1);
 
         canHeal = true;
 
         while (true)
         {
-            if (canHeal && Time.time - lastHitTime > timeBeforeHealingStarts)
+            if (canHeal && Time.time - lastHitTime > timeBeforeHealingStartsNew)
             {
                 // Increment health by healAmount
                 health.health += healAmount;
@@ -230,6 +241,11 @@ public class PlayerController : MonoBehaviour
 
             yield return new WaitForSeconds(healingInterval);
         }
+    }
+
+    private void empty() 
+    {
+        timeBeforeHealingStarts += 0.0001f;
     }
 
 }
