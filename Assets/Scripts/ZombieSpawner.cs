@@ -22,7 +22,7 @@ public class ZombieSpawner : MonoBehaviour
 
     void Start()
     {
-        if (waveIsDone) 
+        if (waveIsDone)
         {
             StartCoroutine(SpawnZombie());
         }
@@ -33,7 +33,7 @@ public class ZombieSpawner : MonoBehaviour
         while (true)
         {
             // Spawn zombies for the current wave
-            for (int i = 0; i < currentWave * 3; i++) 
+            for (int i = 0; i < currentWave * 3; i++)
             {
                 SpawnSingleZombie();
                 yield return new WaitForSeconds(spawnRate);
@@ -50,7 +50,7 @@ public class ZombieSpawner : MonoBehaviour
 
             // Start the next wave
             waveIsDone = true;
-            if (spawnerType == 1) 
+            if (spawnerType == 1)
             {
                 currentWave++;
             }
@@ -58,7 +58,7 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
-    void Update() 
+    void Update()
     {
         UpdateRemainingZombies();
     }
@@ -83,11 +83,13 @@ public class ZombieSpawner : MonoBehaviour
         {
             SpawnZombieOfType(zombiePrefab); // Regular zombie
         }
+
+        FindObjectOfType<SoundManager>().PlaySoundEffect("ToastSpawn");
     }
 
     void SpawnZombieOfType(GameObject zombieType)
     {
-        if (zombieType != null) 
+        if (zombieType != null)
         {
             GameObject zombie = Instantiate(zombieType, spawnPoint.position, Quaternion.identity);
             remainingZombies++;
