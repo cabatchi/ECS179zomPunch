@@ -73,6 +73,42 @@ public class SoundManager : MonoBehaviour
     }
 
 
+    public void FadeMusicTrack(string title, float duration)
+    {
+        var track = this.musicTracks.Find(track => track.title == title);
+
+        if (null == track)
+        {
+            Debug.Log("Sound track not found: " + title);
+            return;
+        }
+
+        if (null != this.trackFading)
+        {
+            this.trackFading.audioSource.Stop();
+        }
+
+        this.trackFading = track;
+
+        StartCoroutine(FadeTrack(this.trackPlaying, this.trackFading, duration));
+    }
+
+    private IEnumerator FadeTrack(SoundClip trackPlaying, SoundClip trackFading, float duration)
+    {
+        float startVolume = trackPlaying.audioSource.volume;
+
+        while (trackPlaying.audioSource.volume > 0)
+        {
+            trackPlaying.audioSource.volume -= startVolume * Time.deltaTime / duration;
+            trackFading.audioSource.volume += startVolume * Time.deltaTime / duration;
+            yield return null;
+        }
+
+        trackPlaying.audioSource.Stop();
+        trackFading.audioSource.volume = startVolume;
+        this.trackPlaying = trackFading;
+    }
+
     public void PlaySoundEffect(string title)
     {
         var track = this.sfxClips.Find(track => track.title == title);
@@ -83,6 +119,17 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        track.audioSource.Play();
+        // Create a new AudioSource
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+
+        // Assign the AudioClip and AudioMixerGroup from the found track to the new AudioSource
+        audioSource.clip = track.audioSource.clip;
+        audioSource.outputAudioMixerGroup = track.audioSource.outputAudioMixerGroup;
+
+        // Play the sound effect on the new AudioSource
+        audioSource.Play();
+
+        // Destroy the AudioSource after the sound effect has finished playing
+        Destroy(audioSource, audioSource.clip.length);
     }
 }
