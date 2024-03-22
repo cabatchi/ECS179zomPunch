@@ -3,8 +3,8 @@
 ## Authors Information
 - Name: Jason Ma
 - GitHub: [https://github.com/JasonBMa](https://github.com/JasonBMa)
-- Name: -
-- GitHub: [-](-)
+- Name: Eric Barron
+- GitHub: [https://github.com/ericbarron329](https://github.com/ericbarron329)
 - Name: -
 - GitHub: [-](https://github.com/JasonBMa)
 - Name: -
@@ -22,6 +22,7 @@
     - Altered the collision hit box to be accurate.
     - Insured that the zombies would only do damage when the zombie was alive and not in death animation.
 
+### Eric's Implementation
 My role was responsible for creating the core mechanics of the game. From the start, our team wanted to create a top-down zombie survival game. We started with the regular zombie and soon branched out to have different types of zombies chasing the player. Our approach was to have a dynamic range of mobs the player could fight. 
 
 The magic and archer zombies have unique features in approaching the player. They will chase the player until they get too close, then will start to back up. This was added to give a realistic feel as the ranged mobs would want to keep their distance from the player. 
@@ -29,21 +30,32 @@ The magic and archer zombies have unique features in approaching the player. The
 Features added:
 
 The core mechanic of the game is centered around zombies. There are multiple types of zombies that spawn from the same regions. Regular zombies run at the player while range-based zombies will back up if the player gets too close.
+
 [Zombie Spawnwer](https://github.com/cabatchi/ECS179zomPunch/commit/7dcbfec3710a64839ab3d0a966df419287858418)
+
 [Regular Zombie](https://github.com/cabatchi/ECS179zomPunch/commit/7dcbfec3710a64839ab3d0a966df419287858418#diff-e89292b67e46d1f25eaeb808ae9e86eb3a191485c6ada3a9d4da5900e2edbf88)
+
 [Archer Zombie / Magic Zombie](https://github.com/cabatchi/ECS179zomPunch/commit/4790c17b77de2470567769c2ff9af91461b74b44)
+
 [Giant Zombie](https://github.com/cabatchi/ECS179zomPunch/commit/bbf303701e1e2e83403fa7b2c4654a0ac9663cc9)
+
 [Zombie Collisions](https://github.com/cabatchi/ECS179zomPunch/commit/26df3f106e954a96dd8f937b5cc8008450c0458d)
 
 Player and enemy attacks were created to add a PvE system into the game. Centered around projectiles, both the player and the enemy can shoot at each other. Homing bullets and projectiles can damage the player while the player can shoot back with a punch animation. The bullet script has a fixed position around the player so the player can point and shoot in their desired direction. Furthermore, scripts like the homing bullet are tailored to lock on to the player and chase them for a set amount of time. 
+
 [BulletScript / PlayerAttack](https://github.com/cabatchi/ECS179zomPunch/commit/25ddafff892854b014f7a91a2bf5423192b39c35)
+
 [EnemyProjectile / HomingBullet](https://github.com/cabatchi/ECS179zomPunch/commit/4790c17b77de2470567769c2ff9af91461b74b44#diff-df9197a964300c0605722f384d4791007ce1a6a82b8eace72f9f260132185610)
 
 
 Powerups and Item shop features were implemented to give the player a replayable aspect of the game. Upgrading and increasing stats make the game more enjoyable as the player can get to high rounds.
+
 [ItemShop](https://github.com/cabatchi/ECS179zomPunch/commit/2d5de45e70f8d4a8eb42f60e3f7583072215dd55)
+
 [PouwerupEffect / HealthBuff](https://github.com/cabatchi/ECS179zomPunch/commit/41b52287a8e4c9bcdb3d73896ef2a057e2834659)
+
 [DamageBuff](https://github.com/cabatchi/ECS179zomPunch/commit/e85ecf236ae526957ac8e1b558745e3b1424ff28)
+
 [RangeBuff](https://github.com/cabatchi/ECS179zomPunch/commit/d953fce85a49cb0a437154523746d9b7daf837d8)
 
 ## Movement/Physics (Jason Ma with help from Eric Barron)
@@ -182,3 +194,7 @@ For the [Powerup Sound](https://pixabay.com/sound-effects/), we got it off this 
 ### Narrative Design (Eric Barron and Nicholas Phan)
 
 Talking with Eric about the Narrative design, we ended up going for a post-apocalyptic UC Davis, where a mysterious Food Poisoning disease called "Toast-Vid 19" had spread throughout the campus. Upon this disease spreading, it created a spiral of transformations of UC Davis Students, morphing them into different classes of "Toast Zombies"
+
+Our design around a UC Davis toast outbreak allowed us to create all assets around the toast prefab. Most of the other teammates helped with the narrative design including the SFX / Audio / Music / Art. Since my main role was Game Logic, most of my narrative design implementations focused on creating the game's assets.
+
+[Zombie Creation](https://github.com/cabatchi/ECS179zomPunch/commit/7dcbfec3710a64839ab3d0a966df419287858418) - Creating the Zombies and Spawners
