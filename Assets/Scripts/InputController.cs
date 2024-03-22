@@ -23,6 +23,11 @@ public class InputController : MonoBehaviour
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             playerAttack.UpdateWeaponCrosshair(mousePos);
 
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                itemShop.ToggleShop();
+            }
+
             if (Input.GetKeyDown(KeyCode.Mouse0) && !itemShop.IsShopOpen())
             {
                 playerAttack.UseWeapon();

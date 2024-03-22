@@ -39,11 +39,6 @@ public class ItemShop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            // Toggle the canvas visibility
-            shopDisplay.SetActive(!shopDisplay.activeSelf);
-        }
         if (!ZombieSpawner.waveIsDone)
         {
             // Close the item shop if the wave is no longer done
@@ -137,5 +132,20 @@ public class ItemShop : MonoBehaviour
     public bool IsShopOpen()
     {
         return shopDisplay.activeSelf;
+    }
+
+    public void ToggleShop()
+    {
+        shopDisplay.SetActive(!shopDisplay.activeSelf);
+    }
+
+    public void CloseShop()
+    {
+        shopDisplay.SetActive(false);
+    }
+
+    public void OpenShop()
+    {
+        shopDisplay.SetActive(true);
     }
 }
