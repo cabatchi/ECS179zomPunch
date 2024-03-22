@@ -20,6 +20,8 @@ public class ZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         zombies = new List<Transform>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        health = health * ZombieSpawner.currentWave;
+        speed = speed * ZombieSpawner.currentWave;
     }
 
     void Update()

@@ -11,14 +11,13 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     public float spawnRate = 1f;
     public float timeBetweenWaves = 3f;
-    public static int currentWave = 1; // Static variable to track the current wave
+    public static int currentWave = 1;
 
     public float giantZombieProbability = 0.05f; // Probability of spawning a giant zombie
     public float archerZombieProbability = 0.05f; // Probability of spawning an archer zombie
     public float magicZombieProbability = 0.05f; // Probability of spawning a magic zombie
 
     public static bool waveIsDone = false;
-    // public static event Action WaveDone;
     public int remainingZombies = 0;
     public int spawnerType = 0;
 
