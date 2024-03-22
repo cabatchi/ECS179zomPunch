@@ -9,7 +9,7 @@
 - Name: Keith Low
 - GitHub: https://github.com/keith-loww
 - Name: Humza Muhammad
-- GitHub: [https://github.com/cabatchi](https://github.com/cabatchi
+- GitHub: [https://github.com/cabatchi](https://github.com/cabatchi)
 
 ## Main Roles
 
