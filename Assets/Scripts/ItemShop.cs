@@ -70,10 +70,10 @@ public class ItemShop : MonoBehaviour
             powerUpsController.AddPowerUp(PowerUpType.HealthBuff); // Increment HealthBuff power-up display
 
             HealthBuff healthBuff = ScriptableObject.CreateInstance<HealthBuff>();
-            healthBuff.amount = 1; 
+            healthBuff.amount = 1;
 
             healthBuff.Apply(GameObject.FindGameObjectWithTag("Player"));
-            
+
         }
     }
 
@@ -87,7 +87,7 @@ public class ItemShop : MonoBehaviour
             powerUpsController.AddPowerUp(PowerUpType.DamageBuff); // Increment DamageBuff power-up
 
             DamageBuff damageBuff = ScriptableObject.CreateInstance<DamageBuff>();
-            damageBuff.amount = 1; 
+            damageBuff.amount = 1;
 
             damageBuff.Apply(GameObject.FindGameObjectWithTag("Player"));
 
@@ -118,7 +118,7 @@ public class ItemShop : MonoBehaviour
             powerUp4Price = Mathf.RoundToInt(powerUp4Price * priceMultiplier);
             UpdatePowerUpPrices();
             powerUpsController.AddPowerUp(PowerUpType.SpeedBuff); // Increment SpeedBuff power-up
-            
+
             SpeedBuff speedBuff = ScriptableObject.CreateInstance<SpeedBuff>();
             speedBuff.amount = 0.2f; // Set the amount (adjust as needed)
 
@@ -132,5 +132,10 @@ public class ItemShop : MonoBehaviour
         powerUp2PriceText.text = powerUp2Price.ToString();
         powerUp3PriceText.text = powerUp3Price.ToString();
         powerUp4PriceText.text = powerUp4Price.ToString();
+    }
+
+    public bool IsShopOpen()
+    {
+        return shopDisplay.activeSelf;
     }
 }
