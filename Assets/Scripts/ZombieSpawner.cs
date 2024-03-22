@@ -25,6 +25,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         if (!waveIsDone) 
         {
+            FindObjectOfType<SoundManager>().PlaySoundEffect("ToastSpawn");
             StartCoroutine(SpawnZombie());
         }
     }
@@ -89,8 +90,6 @@ public class ZombieSpawner : MonoBehaviour
         {
             SpawnZombieOfType(zombiePrefab); // Regular zombie
         }
-
-        FindObjectOfType<SoundManager>().PlaySoundEffect("ToastSpawn");
     }
 
     void SpawnZombieOfType(GameObject zombieType)
