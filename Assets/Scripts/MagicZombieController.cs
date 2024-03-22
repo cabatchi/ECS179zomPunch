@@ -19,6 +19,8 @@ public class MagicZombieController : MonoBehaviour
     public float retreatDistance;
     public GameObject shot;
     private bool isAttacking = false;
+    public float healthScalingFactor = 1.2f;
+    public float speedScalingFactor = 1.1f;
     
     void Start()
     {

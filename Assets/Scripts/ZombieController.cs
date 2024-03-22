@@ -15,6 +15,8 @@ public class ZombieController : MonoBehaviour
     private MoneyManager moneyManager;
     [SerializeField]
     private int dropMoneyOnDeath = 100;
+    public float healthScalingFactor = 1.2f;
+    public float speedScalingFactor = 1.1f;
 
     void Start()
     {
@@ -24,6 +26,12 @@ public class ZombieController : MonoBehaviour
         zombies = new List<Transform>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
         moneyManager = GameObject.Find("GameManager").GetComponent<MoneyManager>();
+        float healthMultiplier = Mathf.Pow(healthScalingFactor, ZombieSpawner.currentWave - 1);
+        float speedMultiplier = Mathf.Pow(speedScalingFactor, ZombieSpawner.currentWave - 1);
+
+        // Apply scaled health and speed
+        health *= healthMultiplier;
+        speed *= speedMultiplier;
     }
 
     void Update()
