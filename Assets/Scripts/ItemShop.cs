@@ -102,7 +102,7 @@ public class ItemShop : MonoBehaviour
             powerUpsController.AddPowerUp(PowerUpType.SpeedBuff); // Increment SpeedBuff power-up
             
             SpeedBuff speedBuff = ScriptableObject.CreateInstance<SpeedBuff>();
-            speedBuff.amount = 1.5f; // Set the amount (adjust as needed)
+            speedBuff.amount = 0.2f; // Set the amount (adjust as needed)
 
             speedBuff.Apply(GameObject.FindGameObjectWithTag("Player"));
         }
