@@ -42,7 +42,6 @@ Flocking/Seperation making the zombies not group up too close with each other, c
 
 In this project, went with the theme of "Rolling with the punches" and decided to create a game with two main mechanics: `Punching` and `Rolling`.
 
-Talking with Eric about the Narrative design, we ended up going for a post-apocalyptic UC Davis, where a mysterious Food Poisoning disease called "Toast-Vid 19" had spread throughout the campus. Upon this disease spreading, it created a spiral of transformations of UC Davis Students, morphing them into different classes of "Toast Zombies"
 
 *The Normal Zombies: * <br>
 ![This is an alt text.](https://img.itch.zone/aW1hZ2UvMzA2MjY5LzE1MDMxNDEuZ2lm/347x500/by419N.gif "Hehe run away bro")
@@ -127,18 +126,27 @@ I chose to use these icons as a way to represent the given stats as I felt like 
         - **Range**
     - Also created a animation for pop up text indicating to the player what power is picked up and it's use.<br>
     !["Pick Up Notification".](https://media.discordapp.net/attachments/1199392620959498400/1220824961845825546/Unity_3Wb3GSNhWK.gif?ex=661058d8&is=65fde3d8&hm=02c53f0224cfddc36190fbb66ef4d3222d38bccf90c75f75527334141363af49&=)
-## Audio (Nicholas Phan)
+## Sub Roles
+### Game Feel (Jason)
+- Made sure the whole death animation plays for zombies.
+- Accurately/ Modified placed collisions, so players weren't getting collided with the air.
+- Made the player blink red, as it was confusing when the player was taking damage.
+- Added hold down `Mouse1/Fire1`, as player was having to manually spam to kill enemies.
+- After testing, we found zombies getting stuck. Decided to change the map to stop choke points where zombies commonly got stuck.
+- Added Pick up sound and Indicator to pick ups as it was confusing what the pick ups upgraded. The pickup sound creates a more auditory and responsive gameplay.
+
+### Audio (Nicholas Phan)
 
 In order to control the sounds in the game, we utilized the `SoundManager.cs` from [exercise 1](https://github.com/dr-jam/CommandPatternExercise) and was able to implement sounds and music for the game. I created a global `GameObject` as a way to make a similar object hierarchy that the exercises did to maintain audio, and would have the audio play on specific key events such as: When the player punches, when zombies spawn (little toaster dings), when players pick up a powerup, etc.
 
 
 For Audio choices, I found primarily royalty free music and took sound effects from other games and media to support what we wanted. 
 
-### Music (Nicholas Phan)
+#### Music (Nicholas Phan)
 
 For Zompunch I found two songs that were Royalty Free and decided it fit the theme of the game. The songs are ["Royalty Free Heavy Metal Instrumental - Game Over - Jacob Lizotte"](https://www.youtube.com/watch?v=DpxZ5PHa6xo) and ["Violent Zombie Annihilation Music Bed of Razors Royalty Free No Copyright Music"](https://www.youtube.com/watch?v=VjFMP9KcqOU)
 
-### SFX (Nicholas Phan)
+#### SFX (Nicholas Phan)
 
 For sound effects, we had a couple of scrapped sounds that we didn't use, but for the most part we have sound effects that focus on the Punch, the spawning of zombies, and the powerups!
 
@@ -146,3 +154,7 @@ Here is the [Punch Sound](https://www.youtube.com/watch?v=lwYL2vs9HL4) and the
 [Round Start Sound](https://www.youtube.com/watch?v=KS85lRtQ_pk) for the toasts. I picked this specific punch sound as it allows for a sense of "Power" within the punch, and for the round start sound, I thought it would fit the theme of how the toasts are spawning out of a toaster!
 
 For the [Powerup Sound](https://pixabay.com/sound-effects/), we got it off this website as it allows for royalty free use.
+
+### Narrative Design (Eric Barron and Nicholas Phan)
+
+Talking with Eric about the Narrative design, we ended up going for a post-apocalyptic UC Davis, where a mysterious Food Poisoning disease called "Toast-Vid 19" had spread throughout the campus. Upon this disease spreading, it created a spiral of transformations of UC Davis Students, morphing them into different classes of "Toast Zombies"
