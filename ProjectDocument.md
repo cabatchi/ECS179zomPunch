@@ -1,4 +1,4 @@
-# Project Progress Report
+# Project Document: Zom-Punch!
 
 ## Authors Information
 
@@ -10,6 +10,18 @@
 - GitHub: https://github.com/keith-loww
 - Name: Humza Muhammad
 - GitHub: [https://github.com/cabatchi](https://github.com/cabatchi)
+
+## Game Summary
+
+Zom-Punch! is a 2D top-down beat-em-up survival game where the player fends off an unending horder of zombie-toasts. In a world ravaged by the food poisoning horrors, you've discovered an unexpected truth: your greatest weapon isn't a gun, but your own raw power.
+
+- Round-based, survival gameplay with beat-em-up mechanics.
+- Punch, roll, and kick your way through waves of zombie-toasts.
+- Collect power-ups to enhance your abilities and survive longer.
+- Buy power-ups between rounds at the item shop to increase your chances of survival.
+- Waves get progressively harder as you progress, so don't let your guard down!
+- Zombies come in different flavors! So keep those fists ready!
+- Compete for the highest score and see how long you can last!
 
 ## Project Resources
 
