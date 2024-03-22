@@ -24,23 +24,23 @@ which we used for a little bit before deciding it was probably just a better ide
 
 I then created a design document, which we sort-of used.
 
-![Design doc #1](image-2.png)
-![Design doc #2](image-3.png)
-![Design doc #3](image-4.png)
-![Design doc #4](image-5.png)
+![Design doc #1](images/designdocpt1.png)
+![Design doc #2](images/designdocpt2.png)
+![Design doc #3](images/designdocpt3png)
+![Design doc #4](images/designdocpt4.png)
 
 I also created the GitHub Repository, and took the responsibility of making sure there weren’t any discrepancies whenever someone tried to merge. At some point, we had over 20 branches. I’m not too well-versed in GitHub but this seemed to be a very learn-on-the-job type thing for me. 
 
-![So many Branches!](image-1.png)
+![So many Branches!](images/branches!.png)
 
 *So many branches!*
 
 As I wasn’t too confident in my coding abilities, and the Producer role seemingly had no code-related obligations, I decided to try to help whoever needed help in the group with whatever. I made a few assets, a gun (very early on)  and a fist (may be hard to see on a white background) after getting inspired by the GDAC. We didn’t end up using these but I felt a little better knowing I did something at least.
 
-![Gun](gun_maybe_i_think.png)
+![Gun](images/gun_maybe_i_think.png)
 *Gun model that we ended up not using*
 
-![Fist](fist_of_guy.png)
+![Fist](images/fist_of_guy.png)
 *Fist model we ended up not using* 
 
 As the producer, I also took responsibility for setting up the peer-review sessions between us and the different groups we were assigned to. I set up the peer review documents that we were using, and had to work with both teams, and at one point, everyone on the other team, in order to make sure that the peer reviews were finished by both parties, something that was very stressful for me. 
