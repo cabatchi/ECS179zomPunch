@@ -12,6 +12,8 @@ public class ZombieController : MonoBehaviour
     public float separationRadius = .1f; // Radius to detect nearby zombies for separation
     public float separationWeight = .001f; // Weight of separation behavior
     private ScoreManager scoreManager;
+    public float healthScalingFactor = 1.2f;
+    public float speedScalingFactor = 1.1f;
 
     void Start()
     {
@@ -20,8 +22,13 @@ public class ZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         zombies = new List<Transform>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
-        health = health * ZombieSpawner.currentWave;
-        speed = speed * ZombieSpawner.currentWave;
+        
+        float healthMultiplier = Mathf.Pow(healthScalingFactor, ZombieSpawner.currentWave - 1);
+        float speedMultiplier = Mathf.Pow(speedScalingFactor, ZombieSpawner.currentWave - 1);
+
+        // Apply scaled health and speed
+        health *= healthMultiplier;
+        speed *= speedMultiplier;
     }
 
     void Update()
