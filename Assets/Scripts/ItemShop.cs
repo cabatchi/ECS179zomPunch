@@ -65,7 +65,7 @@ public class ItemShop : MonoBehaviour
             scoreManager.SubtractScore(powerUp1Price); // Subtract score
             powerUp1Price = Mathf.RoundToInt(powerUp1Price * priceMultiplier);
             UpdatePowerUpPrices();
-            powerUpsController.AddPowerUp(PowerUpType.HealthBuff); // Increment HealthBuff power-up
+            powerUpsController.AddPowerUp(PowerUpType.HealthBuff); // Increment HealthBuff power-up display
         }
     }
 
@@ -77,6 +77,7 @@ public class ItemShop : MonoBehaviour
             powerUp2Price = Mathf.RoundToInt(powerUp2Price * priceMultiplier);
             UpdatePowerUpPrices();
             powerUpsController.AddPowerUp(PowerUpType.DamageBuff); // Increment DamageBuff power-up
+
         }
     }
 
@@ -99,6 +100,11 @@ public class ItemShop : MonoBehaviour
             powerUp4Price = Mathf.RoundToInt(powerUp4Price * priceMultiplier);
             UpdatePowerUpPrices();
             powerUpsController.AddPowerUp(PowerUpType.SpeedBuff); // Increment SpeedBuff power-up
+            
+            SpeedBuff speedBuff = ScriptableObject.CreateInstance<SpeedBuff>();
+            speedBuff.amount = 1.5f; // Set the amount (adjust as needed)
+
+            speedBuff.Apply(GameObject.FindGameObjectWithTag("Player"));
         }
     }
 
