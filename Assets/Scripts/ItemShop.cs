@@ -110,4 +110,10 @@ public class ItemShop : MonoBehaviour
         powerUp3PriceText.text = powerUp3Price.ToString();
         powerUp4PriceText.text = powerUp4Price.ToString();
     }
+
+    public void CloseShop()
+    {
+        Debug.Log("Closing shop");
+        shopDisplay.SetActive(false);
+    }
 }

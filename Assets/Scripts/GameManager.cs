@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,12 +10,13 @@ public class GameManager : MonoBehaviour
     public UnityEngine.UI.Image fadeImage;
     public SoundManager soundManager;
 
-    void Start()
+    public void Start()
     {
         pauseMenuController.ResumeGame();
         scoreManager.ResetScore();
         soundManager.PlayMusicTrack("Theme");
         ZombieSpawner.currentWave = 1; // Static variable to track the current wave
+        ZombieSpawner.waveIsDone = false; // Static variable to track if the wave is done
     }
 
     public void TriggerGameOver()
