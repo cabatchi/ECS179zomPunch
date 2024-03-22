@@ -16,7 +16,8 @@ public class Powerup : MonoBehaviour
 
             GameObject target = collision.gameObject;
             target.GetComponent<PlayerPowerUpsController>().AddPowerUp(powerUpType);
-
+            FindObjectOfType<SoundManager>().PlaySoundEffect("PowerUp");
+            
             powerupEffect.Apply(target);
         }
     }
