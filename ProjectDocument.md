@@ -8,10 +8,46 @@
 - GitHub: [https://github.com/ericbarron329](https://github.com/ericbarron329)
 - Name: Keith Low
 - GitHub: https://github.com/keith-loww
-- Name: -
-- GitHub: [-](https://github.com/JasonBMa)
+- Name: Humza Muhammad
+- GitHub: [https://github.com/cabatchi](https://github.com/cabatchi
 
 ## Main Roles
+
+### Producer (Humza Muhammad)
+The producer coordinates the technical dependencies and basic team logistics. Responsibilities include but are not limited to creating a dependency chart for the significant development tasks for the game, coordinating team meetings, working with the other roles to integrate their work into the main project, deciding on the Git-based workflow (i.e. how everyone's work gets combined into release branches without breaking the project), and organizing the final presentation.
+While this role has fewer direct programming responsibilities, it requires understanding all parts of the development process. When performed well, the producer multiplies the effort of the entire team, which results in a better game project.
+As I wasn’t very confident in my abilities to code anything that would help us develop a game due to my extremely lackluster performance on the solo personal projects, I decided to take on whatever roles, both main and sub, that no one wanted. After everyone chose their roles, the only two roles that remained were the Producer role and the Gameplay Tester role. I wasn’t exactly sure what that would entail. Before anyone had actually chosen their roles, I made a when2meet for all of us to fill out in order to figure out the best time for all of us to hop on call and talk about what we would like to do for our game, as my availability was limited due to constantly being sick as well as having to work right after class on the days I wasn’t sick. I guess I was already doing “Producer” things even then. 
+The first things I did in the role was create a Trello board 
+which we used for a little bit before deciding it was probably just a better idea to update each other in the groupchat on what we were doing and what needed to be done. 
+![Trello Board!](image.png)
+*A Trello Board! We used it for a bit then realized it wasn't too convenient*
+
+I then created a design document, which we sort-of used.
+
+![Design doc #1](image-2.png)
+![Design doc #2](image-3.png)
+![Design doc #3](image-4.png)
+![Design doc #4](image-5.png)
+
+I also created the GitHub Repository, and took the responsibility of making sure there weren’t any discrepancies whenever someone tried to merge. At some point, we had over 20 branches. I’m not too well-versed in GitHub but this seemed to be a very learn-on-the-job type thing for me. 
+
+![So many Branches!](image-1.png)
+
+*So many branches!*
+
+As I wasn’t too confident in my coding abilities, and the Producer role seemingly had no code-related obligations, I decided to try to help whoever needed help in the group with whatever. I made a few assets, a gun (very early on)  and a fist (may be hard to see on a white background) after getting inspired by the GDAC. We didn’t end up using these but I felt a little better knowing I did something at least.
+
+![Gun](gun_maybe_i_think.png)
+*Gun model that we ended up not using*
+
+![Fist](fist_of_guy.png)
+*Fist model we ended up not using* 
+
+As the producer, I also took responsibility for setting up the peer-review sessions between us and the different groups we were assigned to. I set up the peer review documents that we were using, and had to work with both teams, and at one point, everyone on the other team, in order to make sure that the peer reviews were finished by both parties, something that was very stressful for me. 
+I helped a little bit more in the assets department, helping Jason make the wizard, archer, and bloody zombie sprites, but again, I had barely helped with anything code-related.
+The only code-related things I ended up doing was implementing a money system, as someone in the group suggested it after we showed the game off.
+Admittedly, I feel like I was dead weight for the team and didn’t work anywhere near as hard as anyone else, which is probably accurate for someone in a “management” role.
+
 
 ### User Interface and Input (Keith Low)
 
@@ -346,6 +382,11 @@ Here is the [Punch Sound](https://www.youtube.com/watch?v=lwYL2vs9HL4) and the
 [Round Start Sound](https://www.youtube.com/watch?v=KS85lRtQ_pk) for the toasts. I picked this specific punch sound as it allows for a sense of "Power" within the punch, and for the round start sound, I thought it would fit the theme of how the toasts are spawning out of a toaster!
 
 For the [Powerup Sound](https://pixabay.com/sound-effects/), we got it off this website as it allows for royalty free use.
+
+### Gameplay Testing (Humza Muhammad)
+
+The majority of testers seemed to really enjoy the way that the game felt to play, but were hoping for more of a difficulty spike rather than what we had implemented. Also, a large portion of them reported dying to bugs, or things that were straight-up-unfair, such as difficult-to-see projectiles, than anything that could be described as “fair.” A lot of people gave feedback at the in-person event, but they didn’t fill out a form. However, they seemed to have a lot of the same concerns. Game felt good, but there were some bugs that seemed to take away from the experience, not a lot, but enough to the point where it got a little annoying. 
+
 
 ### Narrative Design (Eric Barron and Nicholas Phan)
 
