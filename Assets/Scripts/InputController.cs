@@ -28,7 +28,7 @@ public class InputController : MonoBehaviour
                 itemShop.ToggleShop();
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && !itemShop.IsShopOpen())
+            if (Input.GetKey(KeyCode.Mouse0) && !itemShop.IsShopOpen())
             {
                 playerAttack.UseWeapon();
             }
