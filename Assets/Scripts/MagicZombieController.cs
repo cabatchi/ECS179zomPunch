@@ -16,6 +16,8 @@ public class MagicZombieController : MonoBehaviour
     public float retreatDistance;
     public GameObject shot;
     private bool isAttacking = false;
+    public float healthScalingFactor = 1.2f;
+    public float speedScalingFactor = 1.1f;
     void Start()
     {
         // Find the player's transform using the tag "Player"
@@ -23,6 +25,13 @@ public class MagicZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
         timeBetweenShots = startTimeBetweenShots;
+
+        float healthMultiplier = Mathf.Pow(healthScalingFactor, ZombieSpawner.currentWave - 1);
+        float speedMultiplier = Mathf.Pow(speedScalingFactor, ZombieSpawner.currentWave - 1);
+
+        // Apply scaled health and speed
+        health *= healthMultiplier;
+        speed *= speedMultiplier;
     }
 
     void Update()
