@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
                 rollingDestination = transform.position + (Vector3)movementDirection * rollDistance * modifiedSpeed;
                 rollCooldownTimer = 0.0f;
                 animator.SetBool("Rolling", true);
+                StartCoroutine(RollingTimer());
                 rolling();
             }
         }
@@ -222,6 +223,18 @@ public class PlayerController : MonoBehaviour
 
         // Change the color back to white (assuming the default color is white)
         spriteRenderer.color = Color.white;
+    }
+
+    // Some Technical Debt, used to patch infinite rolling bug for the mean time.
+    private IEnumerator RollingTimer()
+    {
+        // Wait for a short duration
+        yield return new WaitForSeconds(1.5f);
+        if(playerState == PlayerStates.Rolling)
+        {
+            playerState = PlayerStates.Normal;
+            animator.SetBool("Rolling", false);
+        }
     }
 
     IEnumerator HealOverTime()
