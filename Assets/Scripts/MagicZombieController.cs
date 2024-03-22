@@ -9,6 +9,9 @@ public class MagicZombieController : MonoBehaviour
     private Transform target;
     private Animator animator;
     private ScoreManager scoreManager;
+    private MoneyManager moneyManager;
+    [SerializeField]
+    private int dropMoneyOnDeath = 100;
     public float stoppingDistance;
     public float nearDistance;
     public float startTimeBetweenShots;
@@ -16,12 +19,14 @@ public class MagicZombieController : MonoBehaviour
     public float retreatDistance;
     public GameObject shot;
     private bool isAttacking = false;
+    
     void Start()
     {
         // Find the player's transform using the tag "Player"
         target = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        moneyManager = GameObject.Find("GameManager").GetComponent<MoneyManager>();
         timeBetweenShots = startTimeBetweenShots;
     }
 
@@ -81,6 +86,7 @@ public class MagicZombieController : MonoBehaviour
         speed = 0;
         animator.SetBool("IsDead", true);
         scoreManager.AddScore(100);
+        moneyManager.AddMoney(dropMoneyOnDeath);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

@@ -12,6 +12,9 @@ public class ZombieController : MonoBehaviour
     public float separationRadius = .1f; // Radius to detect nearby zombies for separation
     public float separationWeight = .001f; // Weight of separation behavior
     private ScoreManager scoreManager;
+    private MoneyManager moneyManager;
+    [SerializeField]
+    private int dropMoneyOnDeath = 100;
 
     void Start()
     {
@@ -20,6 +23,7 @@ public class ZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         zombies = new List<Transform>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        moneyManager = GameObject.Find("GameManager").GetComponent<MoneyManager>();
     }
 
     void Update()
@@ -81,6 +85,7 @@ public class ZombieController : MonoBehaviour
         speed = 0;
         animator.SetBool("IsDead", true);
         scoreManager.AddScore(100);
+        moneyManager.AddMoney(dropMoneyOnDeath);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

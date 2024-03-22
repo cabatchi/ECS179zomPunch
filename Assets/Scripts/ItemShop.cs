@@ -21,13 +21,14 @@ public class ItemShop : MonoBehaviour
     private int powerUp4Price = 250;
 
     private float priceMultiplier = 1.2f;
-    private ScoreManager scoreManager;
+    //private ScoreManager scoreManager;
+    private MoneyManager moneyManager;
     private PlayerPowerUpsController powerUpsController;
 
     void Start()
     {
         shopDisplay.SetActive(false);
-        scoreManager = FindObjectOfType<ScoreManager>(); // Find and store reference to ScoreManager
+        moneyManager = FindObjectOfType<MoneyManager>(); // Find and store reference to ScoreManager
         powerUpsController = FindObjectOfType<PlayerPowerUpsController>(); // Find and store reference to PlayerPowerUpsController
         UpdatePowerUpPrices();
         powerUp1Button.onClick.AddListener(UpgradePowerUp1);
@@ -61,9 +62,9 @@ public class ItemShop : MonoBehaviour
 
     public void UpgradePowerUp1()
     {
-        if (ScoreManager.GetScore() >= powerUp1Price)
+        if (MoneyManager.GetMoney() >= powerUp1Price)
         {
-            scoreManager.SubtractScore(powerUp1Price); // Subtract score
+            moneyManager.SubtractMoney(powerUp1Price); // Subtract money
             powerUp1Price = Mathf.RoundToInt(powerUp1Price * priceMultiplier);
             UpdatePowerUpPrices();
             powerUpsController.AddPowerUp(PowerUpType.HealthBuff); // Increment HealthBuff power-up
@@ -72,9 +73,9 @@ public class ItemShop : MonoBehaviour
 
     public void UpgradePowerUp2()
     {
-        if (ScoreManager.GetScore() >= powerUp2Price)
+        if (MoneyManager.GetMoney() >= powerUp2Price)
         {
-            scoreManager.SubtractScore(powerUp2Price); // Subtract score
+            moneyManager.SubtractMoney(powerUp2Price); // Subtract money
             powerUp2Price = Mathf.RoundToInt(powerUp2Price * priceMultiplier);
             UpdatePowerUpPrices();
             powerUpsController.AddPowerUp(PowerUpType.DamageBuff); // Increment DamageBuff power-up
@@ -83,9 +84,9 @@ public class ItemShop : MonoBehaviour
 
     public void UpgradePowerUp3()
     {
-        if (ScoreManager.GetScore() >= powerUp3Price)
+        if (MoneyManager.GetMoney() >= powerUp3Price)
         {
-            scoreManager.SubtractScore(powerUp3Price); // Subtract score
+            moneyManager.SubtractMoney(powerUp3Price); // Subtract money
             powerUp3Price = Mathf.RoundToInt(powerUp3Price * priceMultiplier);
             UpdatePowerUpPrices();
             powerUpsController.AddPowerUp(PowerUpType.RangeBuff); // Increment RangeBuff power-up
@@ -94,9 +95,9 @@ public class ItemShop : MonoBehaviour
 
     public void UpgradePowerUp4()
     {
-        if (ScoreManager.GetScore() >= powerUp4Price)
+        if (MoneyManager.GetMoney() >= powerUp4Price)
         {
-            scoreManager.SubtractScore(powerUp4Price); // Subtract score
+            moneyManager.SubtractMoney(powerUp4Price); // Subtract money
             powerUp4Price = Mathf.RoundToInt(powerUp4Price * priceMultiplier);
             UpdatePowerUpPrices();
             powerUpsController.AddPowerUp(PowerUpType.SpeedBuff); // Increment SpeedBuff power-up
@@ -109,11 +110,5 @@ public class ItemShop : MonoBehaviour
         powerUp2PriceText.text = powerUp2Price.ToString();
         powerUp3PriceText.text = powerUp3Price.ToString();
         powerUp4PriceText.text = powerUp4Price.ToString();
-    }
-
-    public void CloseShop()
-    {
-        Debug.Log("Closing shop");
-        shopDisplay.SetActive(false);
     }
 }
