@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class ZombieSpawner : MonoBehaviour
 {
@@ -11,20 +12,19 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     public float spawnRate = 1f;
     public float timeBetweenWaves = 3f;
-    public static int currentWave = 1; // Static variable to track the current wave
+    public static int currentWave = 1; 
 
-    public float giantZombieProbability = 0.05f; // Probability of spawning a giant zombie
-    public float archerZombieProbability = 0.05f; // Probability of spawning an archer zombie
-    public float magicZombieProbability = 0.05f; // Probability of spawning a magic zombie
+    public float giantZombieProbability = 0.05f; 
+    public float archerZombieProbability = 0.05f; 
+    public float magicZombieProbability = 0.05f; 
 
     public static bool waveIsDone = false;
-    // public static event Action WaveDone;
     public int remainingZombies = 0;
     public int spawnerType = 0;
 
     void Start()
     {
-        if (!waveIsDone) 
+        if (!waveIsDone)
         {
             StartCoroutine(SpawnZombie());
         }
@@ -34,7 +34,6 @@ public class ZombieSpawner : MonoBehaviour
     {
         while (true)
         {
-            // Spawn zombies for the current wave
             for (int i = 0; i < currentWave * 3; i++)
             {
                 SpawnSingleZombie();
@@ -49,7 +48,6 @@ public class ZombieSpawner : MonoBehaviour
             }
 
             waveIsDone = true;
-            // WaveDone?.Invoke();
             while (!Input.GetKeyDown(KeyCode.I))
             {
                 yield return null;

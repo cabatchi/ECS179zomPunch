@@ -39,16 +39,10 @@ public class PlayerController : MonoBehaviour
         damage = 1;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody2D>();
-        // healingCoroutine = StartCoroutine(HealOverTime());
         powerUpsController = FindObjectOfType<PlayerPowerUpsController>();
         if (powerUpsController != null)
         {
-            // Start the healing coroutine if the power-ups controller is found
             healingCoroutine = StartCoroutine(HealOverTime());
-        }
-        else 
-        {
-            Debug.Log("Couldnt find power up controller...");
         }
     }
 

@@ -27,8 +27,8 @@ public class ItemShop : MonoBehaviour
     void Start()
     {
         canvas.enabled = false;
-        scoreManager = FindObjectOfType<ScoreManager>(); // Find and store reference to ScoreManager
-        powerUpsController = FindObjectOfType<PlayerPowerUpsController>(); // Find and store reference to PlayerPowerUpsController
+        scoreManager = FindObjectOfType<ScoreManager>();
+        powerUpsController = FindObjectOfType<PlayerPowerUpsController>();
         UpdatePowerUpPrices();
         powerUp1Button.onClick.AddListener(UpgradePowerUp1);
         powerUp2Button.onClick.AddListener(UpgradePowerUp2);
@@ -47,12 +47,6 @@ public class ItemShop : MonoBehaviour
             canvas.enabled = true;
         }
     }
-    // void OnWaveDone()
-    // {
-    //     // Enable the canvas when the wave is done
-    //     canvas.enabled = true;
-    // }
-
     public void UpgradePowerUp1()
     {
         if (ScoreManager.GetScore() >= powerUp1Price)
