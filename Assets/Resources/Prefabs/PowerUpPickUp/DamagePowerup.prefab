@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupEffect: {fileID: 11400000, guid: 4b723c942f9be4356986007892901c79, type: 2}
+  floatingTextPrefab: {fileID: 4538054768128475056, guid: c1cdbc499f9a6dc4b8c83ec95026e18e, type: 3}
 --- !u!61 &4715493957713074581
 BoxCollider2D:
   m_ObjectHideFlags: 0

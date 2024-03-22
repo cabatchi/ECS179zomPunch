@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupEffect: {fileID: 11400000, guid: 67e3b215a078b467c990ca8ecd287b16, type: 2}
+  floatingTextPrefab: {fileID: 4538054768128475056, guid: c1cdbc499f9a6dc4b8c83ec95026e18e, type: 3}
 --- !u!95 &1080557707840749454
 Animator:
   serializedVersion: 5

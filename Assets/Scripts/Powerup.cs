@@ -5,7 +5,7 @@ using UnityEngine;
 public class Powerup : MonoBehaviour
 {
     public PowerupEffect powerupEffect;
-
+    public GameObject floatingTextPrefab;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -19,6 +19,9 @@ public class Powerup : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySoundEffect("PowerUp");
             
             powerupEffect.Apply(target);
+            // Instantiate floating text
+            GameObject text = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
+            text.GetComponent<TextMesh>().text = "+" + powerUpType.ToString();
         }
     }
 }
