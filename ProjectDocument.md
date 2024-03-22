@@ -19,7 +19,7 @@ While this role has fewer direct programming responsibilities, it requires under
 As I wasn’t very confident in my abilities to code anything that would help us develop a game due to my extremely lackluster performance on the solo personal projects, I decided to take on whatever roles, both main and sub, that no one wanted. After everyone chose their roles, the only two roles that remained were the Producer role and the Gameplay Tester role. I wasn’t exactly sure what that would entail. Before anyone had actually chosen their roles, I made a when2meet for all of us to fill out in order to figure out the best time for all of us to hop on call and talk about what we would like to do for our game, as my availability was limited due to constantly being sick as well as having to work right after class on the days I wasn’t sick. I guess I was already doing “Producer” things even then. 
 The first things I did in the role was create a Trello board 
 which we used for a little bit before deciding it was probably just a better idea to update each other in the groupchat on what we were doing and what needed to be done. 
-![Trello Board!](image.png)
+![Trello Board!](images/trello.png)
 *A Trello Board! We used it for a bit then realized it wasn't too convenient*
 
 I then created a design document, which we sort-of used.
