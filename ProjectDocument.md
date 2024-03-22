@@ -11,19 +11,11 @@
 - Name: Keith Low
 - GitHub: https://github.com/keith-loww
 
-## Game Logic (Eric Barron)
+## Main Roles
 
-### Jason's Implementation in Game Logic
+### Game Logic (Eric Barron)
 
-- Created Power Up Spawner that spawns a power up after every wave.
-  - Generates a randomly selected power up `Health`, `Damage`, `Speed`, `Range`.
-  - Plays a sound queue and a indicator of what the power up upgrade for the player.
-- `PlayerController parts` Created a Player States for the Player Controller, to keep track of what the player could and could not do within each state `Normal`, `Rolling`,`Stunned` ,`Dead`.
-- `ZombieController parts` Handled collision with Zombies
-  - Altered the collision hit box to be accurate.
-  - Insured that the zombies would only do damage when the zombie was alive and not in death animation.
-
-### Eric's Implementation
+#### Eric's Implementation
 
 My role was responsible for creating the core mechanics of the game. From the start, our team wanted to create a top-down zombie survival game. We started with the regular zombie and soon branched out to have different types of zombies chasing the player. Our approach was to have a dynamic range of mobs the player could fight.
 
@@ -59,9 +51,19 @@ Powerups and Item shop features were implemented to give the player a replayable
 
 [RangeBuff](https://github.com/cabatchi/ECS179zomPunch/commit/d953fce85a49cb0a437154523746d9b7daf837d8)
 
-## Movement/Physics (Jason Ma with help from Eric Barron)
+#### Jason's Implementation in Game Logic
 
-### Implemented player movement mechanics:
+- Created Power Up Spawner that spawns a power up after every wave.
+  - Generates a randomly selected power up `Health`, `Damage`, `Speed`, `Range`.
+  - Plays a sound queue and a indicator of what the power up upgrade for the player.
+- `PlayerController parts` Created a Player States for the Player Controller, to keep track of what the player could and could not do within each state `Normal`, `Rolling`,`Stunned` ,`Dead`.
+- `ZombieController parts` Handled collision with Zombies
+  - Altered the collision hit box to be accurate.
+  - Insured that the zombies would only do damage when the zombie was alive and not in death animation.
+
+### Movement/Physics (Jason Ma with help from Eric Barron)
+
+#### Implemented player movement mechanics:
 
 - `WASD` for directional movement.
 - `Space/Shift` for Rolling.
@@ -69,17 +71,17 @@ Powerups and Item shop features were implemented to give the player a replayable
   - Utilized Lerping to smooth out rolling speed.
   - Has a timer incase the player gets stuck in the `Rolling` state
 
-### Implemented zombie movement mechanics:
+#### Implemented zombie movement mechanics:
 
 Flocking/Seperation making the zombies not group up too close with each other, creating more of a threat and avoids stacking/overlaying sprites.
 
-### Collision
+#### Collision
 
 - Eric started and designed the collision between the sprites and map.
 - Eric checked for out of bound rolling, and insured player didn't roll out of the map.
 - Jason moved and tweaked map later on based off of bugs and issues that arose.
 
-## Animations and Visuals (Nicholas Phan and Jason Ma)
+### Animations and Visuals (Nicholas Phan and Jason Ma)
 
 In this project, went with the theme of "Rolling with the punches" and decided to create a game with two main mechanics: `Punching` and `Rolling`.
 
@@ -97,7 +99,24 @@ _The Mage:_ <br>
 
 We took the original [asset](https://lhteam.itch.io/zombie-toast) and edited the sprite itself to create variations of what we want in terms of enemies, Jason was the one that designed the Enemy Variants.
 
-## Art Direction (Nicholas Phan)
+#### Animator and Animation Implementation (Jason)
+
+- Added animator controllers, and setting up animations
+  - Player, included animations of `Idle`, `Walking`, `Rolling`
+  - Zombies, included animations of `Idle`, `Walking`, `Dying`
+    - **Default**
+    - **Archer**
+    - **Wizard**: Contains a `Attack` animation
+    - **Giant**
+  - Power Ups Pick Ups
+    - **Health**
+    - **Damage**
+    - **Speed**
+    - **Range**
+  - Also created a animation for pop up text indicating to the player what power is picked up and it's use.<br>
+    !["Pick Up Notification".](https://media.discordapp.net/attachments/1199392620959498400/1220824961845825546/Unity_3Wb3GSNhWK.gif?ex=661058d8&is=65fde3d8&hm=02c53f0224cfddc36190fbb66ef4d3222d38bccf90c75f75527334141363af49&=)
+
+### Art Direction (Nicholas Phan)
 
 I designed and created the TileMap that we would use for our game, as well as Player sprite and powerups. I started by creating some test sprites in 16x16. The choice was essentially creating a 2D pixel game and I ended up just making it 16x16 and held to it.
 
@@ -115,7 +134,7 @@ We had then took a different approach: The punching. We had decided to create th
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![Insert Idle Here.](https://cdn.discordapp.com/attachments/1199392620959498400/1216537096903196712/New_Piskel.gif?ex=6609f9f6&is=65f784f6&hm=4097b47dd75a9066f522c8abedde5d76e15b4d442806e2b1392bea85d795f8af& "Haha He's Standing!") | ![Insert Walk Here.](https://cdn.discordapp.com/attachments/1199392620959498400/1216551856797384785/ZomPunchWalking.gif?ex=660a07b5&is=65f792b5&hm=fd9e0dcd883ae23345e209024e11ae57561eee67729dd254c7f8a4bd9b6b1db1& "Look at em Walk!") | ![Insert Rolling Here.](https://cdn.discordapp.com/attachments/1199392620959498400/1218330424460447934/ZomPunchRoll.gif?ex=660745a0&is=65f4d0a0&hm=43dcf7a2b18cf4e1cf62922e8b5e1734d10f4de80e61d9fe1952c360f5d90a2f& "He's on a roll!") |
 
-### Map Design (Nicholas Phan and Jason Ma)
+#### Map Design (Nicholas Phan and Jason Ma)
 
 For Map Design, we wanted to use the quad as our main map to where we would hold the player to survive in. I had some previously made tiles made for a previous personal project and was able to reuse the assets there. I also had to draw a couple other new things, such as Tables to be borders for the player to not pass over, miscellaneous trash and blood(Jam) on the floor, and had also created the legendary blue hammocks for near the quad for peoeple. I had used a free software known as [Tiled](https://www.mapeditor.org/) to create the tile map, however, there were size errors with my created map (Resolution errors, way too small). Luckily, Jason was able to redesign the map with the given tile map, and created this beautiful design of a post apocolyptic quad:
 
@@ -135,34 +154,17 @@ Jason created starter map for testing meanwhile the Nick was developing our tile
 
 Along with this, we had also used [“Clockwork Raven – Additional Art Assets”](https://clockworkraven.itch.io/raven-fantasy-pixel-art-tileset-green-forest) to use along our maps to create the tree's within the environment, as my art skills are very limited. License for this asset is attached [here](https://drive.google.com/file/d/1DWGfcVE5nXsAkaPgqfGqf0lwesv6ug3N/view).
 
-### Power Ups (Nicholas Phan)
+#### Power Ups (Nicholas Phan)
 
 We had decided to create a sense of Scaleability in the game by implementing powerups! We have these powerups scale the user's stats via a multiplicative value, and allowed for the players to have freedom of creating a build to last against these zombies! I was in charge of drawing the powerups and as a group, agreed that we would have four powerups: Health, Damage, Range, and Speed!
 
-#### Below are the PowerUps!
+##### Below are the PowerUps!
 
 | Health                                                                                                                                                                                                                                         | Damage                                                                                                                                                                                                                                 | Range                                                                                                                                                                                                                                        | Speed                                                                                                                                                                                                                                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![Insert Health Here.](https://cdn.discordapp.com/attachments/591185804630687744/1220609948610854952/Health_Powerup.gif?ex=660f9099&is=65fd1b99&hm=edb9a84de3f5e24624ffff8d6f3ca0319114b08b4f2f8d59006a2be5157788e8& "Luffy's Favorite Food!") | ![Insert Damage Here.](https://cdn.discordapp.com/attachments/1199392620959498400/1218790900788891719/Hand_Powerup.gif?ex=6608f27a&is=65f67d7a&hm=e4cc46206664b1488c2e9ecfff3f6eed358beaa7cdc2d3144c44a016262a28e7& "He's got hands!") | ![Insert Range Here.](https://cdn.discordapp.com/attachments/1199392620959498400/1218793946818412605/Range_Powerup.gif?ex=6608f551&is=65f68051&hm=890f49f40645ee3c5bffbae0f336da2a534ab9b3c32ba9172e467270919634a8& "Probably the most OP!") | ![Insert Speed Here.](https://cdn.discordapp.com/attachments/591185804630687744/1220609947922993172/Speed_Buff.gif?ex=660f9099&is=65fd1b99&hm=4242b01ccab4cfdfa2f7b3208a39b7d1752e979426e37f472931a469edc6e194& "Based on a real life shoe!") |
 
 I chose to use these icons as a way to represent the given stats as I felt like it was easy for players to understand! Meat = Health, Hand = Damage (cause they got hands), Crosshair for range (though it can be confused for a shield), and Red Boots for speed!
-
-### Animator and Animation Implementation (Jason)
-
-- Added animator controllers, and setting up animations
-  - Player, included animations of `Idle`, `Walking`, `Rolling`
-  - Zombies, included animations of `Idle`, `Walking`, `Dying`
-    - **Default**
-    - **Archer**
-    - **Wizard**: Contains a `Attack` animation
-    - **Giant**
-  - Power Ups Pick Ups
-    - **Health**
-    - **Damage**
-    - **Speed**
-    - **Range**
-  - Also created a animation for pop up text indicating to the player what power is picked up and it's use.<br>
-    !["Pick Up Notification".](https://media.discordapp.net/attachments/1199392620959498400/1220824961845825546/Unity_3Wb3GSNhWK.gif?ex=661058d8&is=65fde3d8&hm=02c53f0224cfddc36190fbb66ef4d3222d38bccf90c75f75527334141363af49&=)
 
 ## Sub Roles
 
