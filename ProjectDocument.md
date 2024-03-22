@@ -11,16 +11,25 @@
 - Name: Humza Muhammad
 - GitHub: [https://github.com/cabatchi](https://github.com/cabatchi)
 
+## Project Resources
+
+- itch.io Store Page with a Web-Playable Version of the Game: https://keithloww.itch.io/zom-punch
+- Press Kit: https://keith-loww.github.io/zompunch-press-kit/
+- Trailer:
+  - [GDrive Folder](https://drive.google.com/file/d/1qIAbLkuL9sKL5IeVgH0uHPPuLgRGu6D2/view?usp=sharing)
+  - [YouTube](https://youtu.be/E4mrN1o4A_c)
+
 ## Main Roles
 
 ### Producer (Humza Muhammad)
+
 The producer coordinates the technical dependencies and basic team logistics. Responsibilities include but are not limited to creating a dependency chart for the significant development tasks for the game, coordinating team meetings, working with the other roles to integrate their work into the main project, deciding on the Git-based workflow (i.e. how everyone's work gets combined into release branches without breaking the project), and organizing the final presentation.
 While this role has fewer direct programming responsibilities, it requires understanding all parts of the development process. When performed well, the producer multiplies the effort of the entire team, which results in a better game project.
-As I wasn’t very confident in my abilities to code anything that would help us develop a game due to my extremely lackluster performance on the solo personal projects, I decided to take on whatever roles, both main and sub, that no one wanted. After everyone chose their roles, the only two roles that remained were the Producer role and the Gameplay Tester role. I wasn’t exactly sure what that would entail. Before anyone had actually chosen their roles, I made a when2meet for all of us to fill out in order to figure out the best time for all of us to hop on call and talk about what we would like to do for our game, as my availability was limited due to constantly being sick as well as having to work right after class on the days I wasn’t sick. I guess I was already doing “Producer” things even then. 
-The first things I did in the role was create a Trello board 
-which we used for a little bit before deciding it was probably just a better idea to update each other in the groupchat on what we were doing and what needed to be done. 
+As I wasn’t very confident in my abilities to code anything that would help us develop a game due to my extremely lackluster performance on the solo personal projects, I decided to take on whatever roles, both main and sub, that no one wanted. After everyone chose their roles, the only two roles that remained were the Producer role and the Gameplay Tester role. I wasn’t exactly sure what that would entail. Before anyone had actually chosen their roles, I made a when2meet for all of us to fill out in order to figure out the best time for all of us to hop on call and talk about what we would like to do for our game, as my availability was limited due to constantly being sick as well as having to work right after class on the days I wasn’t sick. I guess I was already doing “Producer” things even then.
+The first things I did in the role was create a Trello board
+which we used for a little bit before deciding it was probably just a better idea to update each other in the groupchat on what we were doing and what needed to be done.
 ![Trello Board!](images/trello.png)
-*A Trello Board! We used it for a bit then realized it wasn't too convenient*
+_A Trello Board! We used it for a bit then realized it wasn't too convenient_
 
 I then created a design document, which we sort-of used.
 
@@ -29,25 +38,24 @@ I then created a design document, which we sort-of used.
 ![Design doc #3](images/designdocpt3png)
 ![Design doc #4](images/designdocpt4.png)
 
-I also created the GitHub Repository, and took the responsibility of making sure there weren’t any discrepancies whenever someone tried to merge. At some point, we had over 20 branches. I’m not too well-versed in GitHub but this seemed to be a very learn-on-the-job type thing for me. 
+I also created the GitHub Repository, and took the responsibility of making sure there weren’t any discrepancies whenever someone tried to merge. At some point, we had over 20 branches. I’m not too well-versed in GitHub but this seemed to be a very learn-on-the-job type thing for me.
 
 ![So many Branches!](images/branches!.png)
 
-*So many branches!*
+_So many branches!_
 
-As I wasn’t too confident in my coding abilities, and the Producer role seemingly had no code-related obligations, I decided to try to help whoever needed help in the group with whatever. I made a few assets, a gun (very early on)  and a fist (may be hard to see on a white background) after getting inspired by the GDAC. We didn’t end up using these but I felt a little better knowing I did something at least.
+As I wasn’t too confident in my coding abilities, and the Producer role seemingly had no code-related obligations, I decided to try to help whoever needed help in the group with whatever. I made a few assets, a gun (very early on) and a fist (may be hard to see on a white background) after getting inspired by the GDAC. We didn’t end up using these but I felt a little better knowing I did something at least.
 
 ![Gun](images/gun_maybe_i_think.png)
-*Gun model that we ended up not using*
+_Gun model that we ended up not using_
 
 ![Fist](images/fist_of_guy.png)
-*Fist model we ended up not using* 
+_Fist model we ended up not using_
 
-As the producer, I also took responsibility for setting up the peer-review sessions between us and the different groups we were assigned to. I set up the peer review documents that we were using, and had to work with both teams, and at one point, everyone on the other team, in order to make sure that the peer reviews were finished by both parties, something that was very stressful for me. 
+As the producer, I also took responsibility for setting up the peer-review sessions between us and the different groups we were assigned to. I set up the peer review documents that we were using, and had to work with both teams, and at one point, everyone on the other team, in order to make sure that the peer reviews were finished by both parties, something that was very stressful for me.
 I helped a little bit more in the assets department, helping Jason make the wizard, archer, and bloody zombie sprites, but again, I had barely helped with anything code-related.
 The only code-related things I ended up doing was implementing a money system, as someone in the group suggested it after we showed the game off.
 Admittedly, I feel like I was dead weight for the team and didn’t work anywhere near as hard as anyone else, which is probably accurate for someone in a “management” role.
-
 
 ### User Interface and Input (Keith Low)
 
@@ -387,8 +395,7 @@ For the [Powerup Sound](https://pixabay.com/sound-effects/), we got it off this 
 
 [Here's our response form for playtesters.](https://docs.google.com/spreadsheets/d/1VqeQgcYj5rK8qaR21-6FDTV6_403Tw0FFFR_fcPx0_0/edit?resourcekey#gid=1086174665) Most of he people filling out the form were either personal friends of mine, or people from Twitter.
 
-The majority of testers seemed to really enjoy the way that the game felt to play, but were hoping for more of a difficulty spike rather than what we had implemented. Also, a large portion of them reported dying to bugs, or things that were straight-up-unfair, such as difficult-to-see projectiles, than anything that could be described as “fair.” A lot of people gave feedback at the in-person event, but they didn’t fill out a form. However, they seemed to have a lot of the same concerns. Game felt good, but there were some bugs that seemed to take away from the experience, not a lot, but enough to the point where it got a little annoying. 
-
+The majority of testers seemed to really enjoy the way that the game felt to play, but were hoping for more of a difficulty spike rather than what we had implemented. Also, a large portion of them reported dying to bugs, or things that were straight-up-unfair, such as difficult-to-see projectiles, than anything that could be described as “fair.” A lot of people gave feedback at the in-person event, but they didn’t fill out a form. However, they seemed to have a lot of the same concerns. Game felt good, but there were some bugs that seemed to take away from the experience, not a lot, but enough to the point where it got a little annoying.
 
 ### Narrative Design (Eric Barron and Nicholas Phan)
 
