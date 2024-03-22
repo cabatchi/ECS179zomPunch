@@ -23,6 +23,15 @@ Zom-Punch! is a 2D top-down beat-em-up survival game where the player fends off 
 - Zombies come in different flavors! So keep those fists ready!
 - Compete for the highest score and see how long you can last!
 
+## Gameplay Explanation
+After the player spawns into the arena, they are simply tasked with surviving against as many waves as possible against the ever-increasing numbers of zombies. 
+
+The player character is controlled via the WASD/Arrow keys for movement, as well as a "roll" that's performed via the spacebar/left shift, giving a brief window of invulnerability against enemy attacks. To attack, the mouse is used to aim around the level, and the left-click button is used to attack. 
+
+In their fight against the horde, the player will encounter four different types of enemies. Firstly is the basic zombie, all they really do is run at the player, damaging them on impact. The second, is the archer zombie, which attacks the player with a straight-moving projectile. Third, is the Mage zombie, attacking the player with a projectile like the Archer, but this projectile isn't just flying straight, it'll home in on the player, forcing them to dodge. A trait both the Mage and Archer zombie share is that upon being approached by the player, they'll go do their best to move away from the player in order to maintain their distance, so if you want to take them down, it's best to close the distance ASAP using the roll mechanic. The final, and largest zombie, is the Giant zombie, which is simply a very large and tanky version of the basic zombie.
+
+Points, as well as cash, are awarded to the player with every zombie defeated. Points for scoring purposes, and cash is to be spent on four different power-ups Range, Health, Speed, and Damage buffs in the shop, appearing as an intermission between waves.
+
 ## Project Resources
 
 - itch.io Store Page with a Web-Playable Version of the Game: https://keithloww.itch.io/zom-punch
