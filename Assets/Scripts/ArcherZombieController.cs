@@ -68,15 +68,12 @@ public class ArcherZombieController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        // Reduce health by the amount of damage taken
         health -= damage;
-
-        // Ensure health doesn't go below 0
         health = Mathf.Max(health, 0);
 
         if (health <= 0)
         {
-            Destroy(gameObject.GetComponent<BoxCollider2D>()); //Removes collision so that the zombie can't damage the player after it's dead
+            Destroy(gameObject.GetComponent<BoxCollider2D>()); 
             OnDied();
         }
     }
@@ -90,17 +87,11 @@ public class ArcherZombieController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Weapon")
-        {
-            // Debug.Log("Sword -> Zombie");
-            TakeDamage(1);
-        }
         if (collider.gameObject.tag == "Bullet")
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             PlayerController playerController = player.GetComponent<PlayerController>();
             float damage = playerController.damage;
-            // Debug.Log("Bullet -> Zombie" + damage);
             TakeDamage(damage);
         }
     }

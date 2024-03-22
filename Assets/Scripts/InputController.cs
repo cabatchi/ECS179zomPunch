@@ -6,12 +6,17 @@ public class InputController : MonoBehaviour
     public PlayerController playerController;
     public PlayerAttack playerAttack;
     public PauseMenuController pauseMenuController;
+    public ItemShop itemShop;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenuController.ToggleMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            itemShop.canvas.enabled = !itemShop.canvas.enabled;
         }
 
         if (!PauseMenuController.isPaused)

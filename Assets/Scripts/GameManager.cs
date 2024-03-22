@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         pauseMenuController.ResumeGame();
         scoreManager.ResetScore();
         soundManager.PlayMusicTrack("Theme");
+        ZombieSpawner.currentWave = 1;
     }
 
     public void TriggerGameOver()

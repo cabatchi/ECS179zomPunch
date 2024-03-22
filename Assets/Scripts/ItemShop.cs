@@ -38,11 +38,6 @@ public class ItemShop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            // Toggle the canvas visibility
-            canvas.enabled = !canvas.enabled;
-        }
         if (!ZombieSpawner.waveIsDone)
         {
             // Close the item shop if the wave is no longer done
