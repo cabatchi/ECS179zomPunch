@@ -4,7 +4,7 @@ using TMPro;
 
 public class ItemShop : MonoBehaviour
 {
-    [SerializeField] public Canvas canvas;
+    [SerializeField] public GameObject shopDisplay;
     [SerializeField] private TextMeshProUGUI powerUp1PriceText;
     [SerializeField] private TextMeshProUGUI powerUp2PriceText;
     [SerializeField] private TextMeshProUGUI powerUp3PriceText;
@@ -26,7 +26,7 @@ public class ItemShop : MonoBehaviour
 
     void Start()
     {
-        canvas.enabled = false;
+        shopDisplay.SetActive(false);
         scoreManager = FindObjectOfType<ScoreManager>(); // Find and store reference to ScoreManager
         powerUpsController = FindObjectOfType<PlayerPowerUpsController>(); // Find and store reference to PlayerPowerUpsController
         UpdatePowerUpPrices();
@@ -41,21 +41,22 @@ public class ItemShop : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             // Toggle the canvas visibility
-            canvas.enabled = !canvas.enabled;
+            shopDisplay.SetActive(!shopDisplay.activeSelf);
         }
         if (!ZombieSpawner.waveIsDone)
         {
             // Close the item shop if the wave is no longer done
-            canvas.enabled = false;
-        } else 
+            shopDisplay.SetActive(false);
+        }
+        else
         {
-            canvas.enabled = true;
+            shopDisplay.SetActive(true);
         }
     }
     // void OnWaveDone()
     // {
     //     // Enable the canvas when the wave is done
-    //     canvas.enabled = true;
+    //     canvas.SetActive() = true;
     // }
 
     public void UpgradePowerUp1()
@@ -104,9 +105,9 @@ public class ItemShop : MonoBehaviour
 
     private void UpdatePowerUpPrices()
     {
-        powerUp1PriceText.text = "$" + powerUp1Price.ToString();
-        powerUp2PriceText.text = "$" + powerUp2Price.ToString();
-        powerUp3PriceText.text = "$" + powerUp3Price.ToString();
-        powerUp4PriceText.text = "$" + powerUp4Price.ToString();
+        powerUp1PriceText.text = powerUp1Price.ToString();
+        powerUp2PriceText.text = powerUp2Price.ToString();
+        powerUp3PriceText.text = powerUp3Price.ToString();
+        powerUp4PriceText.text = powerUp4Price.ToString();
     }
 }
