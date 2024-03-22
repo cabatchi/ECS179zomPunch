@@ -12,6 +12,7 @@ public class HealthBuff : PowerupEffect
 
     public override void Apply(GameObject target)
     {
-        target.GetComponent<Health>().health += amount;
+        PlayerController.healthBuffMultiplier += amount;
+        target.GetComponent<PlayerController>().timeBeforeHealingStarts =  5 / PlayerController.healthBuffMultiplier;
     }
 }

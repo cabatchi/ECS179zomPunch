@@ -30,6 +30,13 @@ public class MagicZombieController : MonoBehaviour
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
         moneyManager = GameObject.Find("GameManager").GetComponent<MoneyManager>();
         timeBetweenShots = startTimeBetweenShots;
+
+        float healthMultiplier = Mathf.Pow(healthScalingFactor, ZombieSpawner.currentWave - 1);
+        float speedMultiplier = Mathf.Pow(speedScalingFactor, ZombieSpawner.currentWave - 1);
+
+        // Apply scaled health and speed
+        health *= healthMultiplier;
+        speed *= speedMultiplier;
     }
 
     void Update()

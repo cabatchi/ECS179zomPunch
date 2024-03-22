@@ -13,9 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float damage = 0.5f;
     [SerializeField] private float stunDuration = 1.0f;
     [SerializeField] private PlayerAttack weapon;
-    [SerializeField] private float timeBeforeHealingStarts = 5.0f; 
+    [SerializeField] public float timeBeforeHealingStarts = 5.0f; 
     [SerializeField] private float healingInterval = 2.0f; 
     [SerializeField] private int healAmount = 1; 
+    public static int healthBuffMultiplier = 1;
 
     enum PlayerStates { Normal, Rolling, Stunned, Dead };
     private PlayerStates playerState;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         // healingCoroutine = StartCoroutine(HealOverTime());
         powerUpsController = FindObjectOfType<PlayerPowerUpsController>();
+        healthBuffMultiplier = 1;
         if (powerUpsController != null)
         {
             // Start the healing coroutine if the power-ups controller is found
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
     public void HandlePunch()
     {
         Debug.Log("Punching");
+        healthBuffMultiplier += 2;
     }
     public void HandleRoll()
     {
@@ -223,16 +226,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator HealOverTime()
     {
-        float timeBeforeHealingStartsNew = timeBeforeHealingStarts / (powerUpsController.GetPowerUpCount(PowerUpType.HealthBuff) + 1);
+        // float timeBeforeHealingStartsNew = timeBeforeHealingStarts / (powerUpsController.GetPowerUpCount(PowerUpType.HealthBuff) + 1);
 
-        yield return new WaitForSeconds(timeBeforeHealingStartsNew);
+        yield return new WaitForSeconds(timeBeforeHealingStarts);
         // Debug.Log(powerUpsController.GetPowerUpCount(PowerUpType.HealthBuff) + 1);
 
         canHeal = true;
 
         while (true)
         {
-            if (canHeal && Time.time - lastHitTime > timeBeforeHealingStartsNew)
+            if (canHeal && Time.time - lastHitTime > timeBeforeHealingStarts)
             {
                 // Increment health by healAmount
                 health.health += healAmount;
