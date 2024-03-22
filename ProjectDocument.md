@@ -6,12 +6,163 @@
 - GitHub: [https://github.com/JasonBMa](https://github.com/JasonBMa)
 - Name: Eric Barron
 - GitHub: [https://github.com/ericbarron329](https://github.com/ericbarron329)
-- Name: -
-- GitHub: [-](https://github.com/JasonBMa)
 - Name: Keith Low
 - GitHub: https://github.com/keith-loww
+- Name: -
+- GitHub: [-](https://github.com/JasonBMa)
 
 ## Main Roles
+
+### User Interface and Input (Keith Low)
+
+#### User Interface
+
+When drafting up my initial designs for the User Interface, I wanted to achieve a balance between two thematic influences:
+
+- **Arcade Aesthetic:** The UI aimed for a clean and uncluttered visual style, reminiscent of classic arcade games. This focus on clarity ensured that players could easily understand and interact with the interface.
+- **Zombie Theme Integration:** To reinforce the game's "zombie" theme, the color palette leaned towards a darker and greyer range, subtly setting the atmosphere.
+
+##### Main Menu
+
+The first screen I designed was the Main Menu screen. Below you can see all the ideations of the design. Starting with the basic layout, I eventually added a background, custom fonts, recolored the buttons, and enlarged the Zombie Toast sprite.
+
+![MainMenuMockups.png](images/MainMenuMockups.png)
+
+Eventually, I settled on the design below.
+
+![MainMenu.png](images/MainMenu.png)
+
+I also needed to create a simple “How to Play” screen, which would just serve as a toggle overlay on the main menu. Here are the iterations of the design of this screen.
+
+![ControlsIdeation.png](images/ControlsIdeation.png)
+
+Eventually, I settled on the design below:
+
+![Controls.png](images/Controls.png)
+
+Both the main menu and its interactive elements were implemented within a single scene named "Main Menu." This scene facilitates:
+
+- **Game Start:** Clicking the "Punch" button triggers a scene transition to the main game.
+- **Tutorial Access:** The "How To Play" button activates an overlay containing tutorial information.
+- **Game Exit:** The "Exit" button gracefully terminates the game.
+
+The [`MainMenu`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/MainMenu.cs#L4) class serves as the central controller for this scene, managing all its functionalities. Additionally, it uses a [`SoundManager`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/SoundManager.cs#L13) to play the theme music.
+
+##### Game Over Screen
+
+Mirroring the Main Menu approach, the game over screen was initially designed in Figma. The design process prioritized conveying a feeling of being overwhelmed by the relentless horde. This sentiment was achieved through the strategic use of a multitude of zombie-toast sprites populating the background.
+
+**Mockups:**
+
+![GameOverMockups.png](images/GameOverMockups.png)
+
+Finally, I decided on this design:
+
+![GameOver.png](images/GameOver.png)
+
+Side note: The [`PlayerController`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/PlayerController.cs#L6) is responsible for detecting player death. Upon such an event, it signals the [`GameManager`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/GameManager.cs#L5) to initiate the game over sequence. This sequence involves:
+
+- **Screen Fade:** The `GameManager` fades the screen to black, creating a clear transition.
+- **Scene Change:** The `GameManager` transitions the scene to the dedicated "Game Over" scene.
+
+Similar to the Main Menu, the "Game Over" scene is managed by a central controller, the [`GameOverController`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/GameOverController.cs#L5) acts as a general controller that handles all of this. This controller oversees:
+
+- **Interactive Elements:** The controller handles the functionality of the two buttons presented in the scene:
+  - "Play Again": Clicking this button triggers a scene change back to the main game, allowing the player to restart.
+  - "Main Menu": This button transitions the scene to the main menu, providing the option to return to the title screen.
+- **Audio Cues:** The `GameOverController` leverages the [`SoundManager`](https://github.com/cabatchi/ECS179zomPunch/blob/906c5bc17b5905414707318f5f8bbf997518b138/Assets/Scripts/SoundManager.cs#L13) to play the game over music, setting the appropriate audio mood.
+
+##### HUD
+
+###### Healthbar
+
+**Mockups:**
+
+![HealthbarMockups.png](images/HealthbarMockups.png)
+
+**Final assets:**
+
+![HealthbarAssets.png](images/HealthbarAssets.png)
+
+In keeping with the game's "food poisoning" theme, the health bar utilizes meat-sticks instead of the conventional hearts. The [`Health`](https://github.com/cabatchi/ECS179zomPunch/blob/906c5bc17b5905414707318f5f8bbf997518b138/Assets/Scripts/Health.cs#L4) class manages this health bar, handling the following:
+
+- **Health Tracking:** Stores the player's current health value.
+- **Visual Feedback:** Updates the appearance of the meat-sticks to visually represent health deterioration. As the player takes damage, a certain number of meat-sticks become visually "poisoned" (presumably changing color or appearance). There are a total of five meat-sticks, and once all are poisoned, the game ends.
+
+###### PowerUps Display
+
+**Mockups:**
+
+![PowerUpsMockups.png](images/PowerUpsMockups.png)
+
+**Final:**
+
+![PowerUps.png](images/PowerUps.png)
+
+The PowerUp HUD is overseen by the [`PowerUpsDisplayController`](https://github.com/cabatchi/ECS179zomPunch/blob/906c5bc17b5905414707318f5f8bbf997518b138/Assets/Scripts/PowerUpDisplayController.cs#L3). This controller maintains communication with the [`PlayerPowerUpsController`](https://github.com/cabatchi/ECS179zomPunch/blob/906c5bc17b5905414707318f5f8bbf997518b138/Assets/Scripts/PlayerPowerUpsController.cs#L4) to ensure the displayed numerical values accurately reflect the player's current power-up inventory.
+
+The [`PlayerPowerUpsController`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/PlayerPowerUpsController.cs#L4) keeps track of the number of each power-up the player possesses throughout the game. It leverages an enum, [`PowerUpType`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/PlayerPowerUpsController.cs#L25), to categorize the different power-up types. This approach ensures clarity regarding the specific power-up type being added to the count, promoting the creation of more general-purpose functions. By using an enum, the code becomes more readable and maintainable as the set of possible power-ups is explicitly defined.
+
+###### Misc: Score, Money, Waves, Zombies
+
+All these misc. values on the HUD can be seen in this screenshot.
+
+![MiscHUD.jpg](images/MiscHUD.jpg)
+
+- Score is is tracked via the [`ScoreManager`](https://github.com/cabatchi/ECS179zomPunch/blob/b0f94dbd989922021ae601d21ab36ce47c2f4c42/Assets/Scripts/ScoreManager.cs#L3) which can be found in the `GameManager` object. It is responsible for both:
+  - Storing the score value such that it can be accessed in the “Game Over” scene
+  - Updating the text representing the score.
+    The `ScoreManager` also provides some methods to allow certain events, such as killing a zombie, to modify the score value.
+- Money is tracked in a very similar way as score, using the [`MoneyManager`](https://github.com/cabatchi/ECS179zomPunch/blob/b0f94dbd989922021ae601d21ab36ce47c2f4c42/Assets/Scripts/MoneyManager.cs#L3).
+- The remaining zombies and wave counter display is controlled with [`ShowWave`](https://github.com/cabatchi/ECS179zomPunch/blob/b0f94dbd989922021ae601d21ab36ce47c2f4c42/Assets/Scripts/ShowWave.cs#L6) which counts up the remaining zombies and the wave number by accessing the [`ZombieSpawner`](https://github.com/cabatchi/ECS179zomPunch/blob/b0f94dbd989922021ae601d21ab36ce47c2f4c42/Assets/Scripts/ZombieSpawner.cs#L5) class methods.
+
+##### Store
+
+**Mockups:**
+
+![StoreMockups.png](images/StoreMockups.png)
+
+**Final Design:**
+
+![Store.png](images/Store.png)
+
+Embracing our design philosophy, the final store mockup features an arcade-inspired, minimalist UI that clearly communicates purchasable power-ups at displayed prices. Additionally, it incorporates a helpful prompt at the bottom, guiding players on initiating the next wave.
+
+The Store functions as a hidden panel that activates after each wave concludes. The [`ItemShop`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/ItemShop.cs#L5) class manages this behavior, detecting wave completion signals from the [`ZombieSpawner`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/ZombieSpawner.cs#L5) class. Upon receiving such a signal, `ItemShop` triggers the Store panel to appear.
+
+Within the Store, the `ItemShop` class governs button interactions. When a button is pressed, the corresponding power-up equips to the player, and the price for that power-up increases.
+
+Side note: The [`InputController`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/InputController.cs#L3) maintains awareness of the Store's open/closed state. When the Store is open, the `InputController` restricts specific inputs, like punching attacks. Conversely, it grants the player the ability to close the Store, introducing a new input action specific to this context.
+
+##### Pause Menu
+
+**Mockups:**
+
+![PauseMockups.png](images/PauseMockups.png)
+
+**Final Assets:**
+
+![PauseAssets.png](images/PauseAssets.png)
+
+Incorporating thematic elements, the pause menu features bite marks and chips, enhancing its visual appeal and reinforcing the game's atmosphere.
+
+The [`PauseMenuController`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/PauseMenuController.cs#L4) governs the pause menu, which functions as a hidden panel. This controller handles several key actions:
+
+- **Menu Toggling:** The controller toggles the visibility of the pause menu and its accompanying overlay. This overlay prevents players from accessing the shop while the game is paused.
+- **Game Pausing/Resuming:** The controller manages the game clock, enabling the paused-game state by stopping and resuming the clock as needed.
+- **Button Actions:** The controller oversees button functionality within the pause menu. Buttons offer options to resume the game or exit to the main menu.
+
+Side note: The [`InputController`](https://github.com/cabatchi/ECS179zomPunch/blob/65f84c3d5659cd392ddd2f216ee25a857c4a26a6/Assets/Scripts/InputController.cs#L3) remains active during the paused state. However, it restricts all inputs except the "ESC" key, which serves as the designated pause menu toggle.
+
+#### User Input
+
+This game utilizes a mouse and keyboard interface for user input. The `GameManager` object houses the [`InputController`](https://github.com/cabatchi/ECS179zomPunch/blob/906c5bc17b5905414707318f5f8bbf997518b138/Assets/Scripts/InputController.cs#L3), responsible for managing all player inputs and the corresponding logic dictating when specific inputs are allowed.
+
+**Benefits of a Centralized `InputController`:**
+
+- **Decoupling:** Employing a single `InputController` fosters a separation between user inputs and the classes they interact with. This promotes cleaner code structure.
+- **Improved Visualization:** Centralizing input logic within the `InputController` simplifies visualizing all available user inputs and the underlying logic in one location.
+- **Future-Proofing:** This approach facilitates the potential future implementation of key remapping functionality.
 
 ### Game Logic (Eric Barron)
 
