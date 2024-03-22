@@ -12,6 +12,9 @@ public class ArcherZombieController : MonoBehaviour
     public float separationRadius = .1f; // Radius to detect nearby zombies for separation
     public float separationWeight = .001f; // Weight of separation behavior
     private ScoreManager scoreManager;
+    private MoneyManager moneyManager;
+    [SerializeField]
+    private int dropMoneyOnDeath = 100;
     public float stoppingDistance;
     public float nearDistance;
     public float startTimeBetweenShots;
@@ -29,6 +32,7 @@ public class ArcherZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         zombies = new List<Transform>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        moneyManager = GameObject.Find("GameManager").GetComponent<MoneyManager>();
         timeBetweenShots = startTimeBetweenShots;
         float healthMultiplier = Mathf.Pow(healthScalingFactor, ZombieSpawner.currentWave - 1);
         float speedMultiplier = Mathf.Pow(speedScalingFactor, ZombieSpawner.currentWave - 1);
@@ -94,6 +98,7 @@ public class ArcherZombieController : MonoBehaviour
         speed = 0;
         animator.SetBool("IsDead", true);
         scoreManager.AddScore(100);
+        moneyManager.AddMoney(dropMoneyOnDeath);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
