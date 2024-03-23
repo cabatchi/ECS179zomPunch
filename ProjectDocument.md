@@ -78,6 +78,8 @@ I helped a little bit more in the assets department, helping Jason make the wiza
 The only code-related things I ended up doing was implementing a money system, as someone in the group suggested it after we showed the game off.
 Admittedly, I feel like I was dead weight for the team and didn’t work anywhere near as hard as anyone else, which is probably accurate for someone in a “management” role.
 
+Towards the end (the literal last day) I implemented a working money system! So that's something.
+
 ### User Interface and Input (Keith Low)
 
 #### User Interface
