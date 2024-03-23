@@ -10,6 +10,8 @@
 - GitHub: https://github.com/keith-loww
 - Name: Humza Muhammad
 - GitHub: [https://github.com/cabatchi](https://github.com/cabatchi)
+- Name: Nicholas Phan
+- Github [https://github.com/Nphan20](https://github.com/Nphan20)
 
 ## Game Summary
 
